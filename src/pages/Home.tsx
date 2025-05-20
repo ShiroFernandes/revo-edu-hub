@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Book, Video, List, Pencil, Accessibility } from 'lucide-react';
@@ -46,22 +45,23 @@ const Home = () => {
     }
   };
 
+  // Atualizado para incluir imagens de pessoas com diferentes tipos de deficiência
   const carouselImages = [
     {
-      src: "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?auto=format&fit=crop&w=1920&q=80",
-      alt: "Pessoas usando tecnologia assistiva estudando juntas"
+      src: "https://images.unsplash.com/photo-1532649842991-60f6a04df35d?auto=format&fit=crop&w=1920&q=80",
+      alt: "Pessoa em cadeira de rodas sorrindo enquanto estuda com colegas"
     },
     {
-      src: "https://images.unsplash.com/photo-1510227272981-87123e259b17?auto=format&fit=crop&w=1920&q=80",
-      alt: "Estudante sorrindo enquanto usa um laptop"
+      src: "https://images.unsplash.com/photo-1594608661623-aa0bd3a69d98?auto=format&fit=crop&w=1920&q=80",
+      alt: "Grupo diverso de estudantes incluindo pessoa com deficiência visual"
     },
     {
-      src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80",
-      alt: "Grupo de pessoas diversas colaborando em uma mesa de estudos"
+      src: "https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?auto=format&fit=crop&w=1920&q=80",
+      alt: "Pessoa utilizando linguagem de sinais enquanto ensina"
     },
     {
-      src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1920&q=80",
-      alt: "Pessoas diversas em uma reunião de estudo"
+      src: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=1920&q=80",
+      alt: "Grupo diverso de pessoas colaborando e sorrindo em ambiente educacional"
     }
   ];
 
@@ -71,20 +71,20 @@ const Home = () => {
       
       {/* Background Carousel with Overlay */}
       <div className="absolute inset-0 z-0">
-        <Carousel className="w-full h-full" opts={{ loop: true, duration: 20 }}>
+        <Carousel className="w-full h-full" opts={{ loop: true, autoplay: true, interval: 5000, duration: 1000 }}>
           <CarouselContent className="h-full">
             {carouselImages.map((image, index) => (
               <CarouselItem key={index} className="h-full">
                 <div 
-                  className="w-full h-full bg-cover bg-center" 
+                  className="w-full h-full bg-cover bg-center transition-opacity duration-500"
                   style={{ 
                     backgroundImage: `url(${image.src})`,
                   }}
                   aria-label={image.alt}
                   role="img"
                 >
-                  {/* Dark overlay */}
-                  <div className="w-full h-full bg-black/40" />
+                  {/* Dark overlay para melhorar o contraste com o container de boas-vindas */}
+                  <div className="w-full h-full bg-black/50" />
                 </div>
               </CarouselItem>
             ))}
