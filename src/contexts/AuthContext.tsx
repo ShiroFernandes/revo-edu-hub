@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { initializeApp } from 'firebase/app';
 import { 
@@ -10,14 +9,14 @@ import {
   User as FirebaseUser
 } from 'firebase/auth';
 
-// Firebase configuration
+// Firebase configuration - updating with valid keys
 const firebaseConfig = {
-  apiKey: "AIzaSyAqDbgXVcvezQcGX8w-nIJw6-M-U2a1ArY",
-  authDomain: "revo-education.firebaseapp.com",
-  projectId: "revo-education",
-  storageBucket: "revo-education.appspot.com",
-  messagingSenderId: "456845338100",
-  appId: "1:456845338100:web:3df9db8852886addfda0fa"
+  apiKey: "AIzaSyBaeDWRfQTj3JxO_M0FMPNMMtBpJqZKfnw",
+  authDomain: "revo-education-project.firebaseapp.com",
+  projectId: "revo-education-project",
+  storageBucket: "revo-education-project.appspot.com",
+  messagingSenderId: "305256596277",
+  appId: "1:305256596277:web:ecab9a7440dfb8d92c1430"
 };
 
 // Initialize Firebase
