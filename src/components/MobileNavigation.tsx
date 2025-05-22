@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -7,7 +6,7 @@ import {
   Calculator, 
   History, 
   Globe, 
-  Flask, 
+  Flame, 
   Atom, 
   MessageSquare 
 } from 'lucide-react';
@@ -44,7 +43,7 @@ const MobileNavigation = () => {
     { 
       name: 'Química', 
       path: '/aulas?subject=quimica', 
-      icon: <Flask className="mr-2 h-5 w-5" /> 
+      icon: <Flame className="mr-2 h-5 w-5" /> 
     },
     { 
       name: 'Física', 
