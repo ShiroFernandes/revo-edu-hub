@@ -10,10 +10,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { useIsMobile } from '@/hooks/use-mobile';
+import MobileNavigation from './MobileNavigation';
 
 const Header = () => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   const handleLogout = async () => {
     await logout();
@@ -21,13 +26,28 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white shadow-sm sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex">
+          <div className="flex items-center">
+            {isMobile && (
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="mr-2">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Menu principal</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="p-0">
+                  <MobileNavigation />
+                </SheetContent>
+              </Sheet>
+            )}
+            
             <Link to="/" className="flex-shrink-0 flex items-center">
               <h1 className="text-xl font-bold text-revo-purple">REVO</h1>
             </Link>
+            
             <nav className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link to="/" className="border-transparent text-gray-500 hover:border-revo-purple hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                 Início
@@ -66,6 +86,32 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+          
+          {isMobile && (
+            <div className="flex items-center">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative w-10 h-10 rounded-full">
+                    <Avatar>
+                      <AvatarImage src={currentUser?.photoURL} alt={currentUser?.name} />
+                      <AvatarFallback>{currentUser?.name?.[0] || 'U'}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem className="text-gray-700">
+                    <span>{currentUser?.name}</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="text-gray-700">
+                    <span>{currentUser?.email}</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                    Sair
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          )}
         </div>
       </div>
     </header>
