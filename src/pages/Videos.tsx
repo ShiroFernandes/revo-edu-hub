@@ -1,57 +1,57 @@
 
 import React, { useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
-import Layout from '@/components/Layout';
 
-// Sample video data
+// Sample video data (similar to Aulas page but with different content)
 const videos = [
   {
     id: 1,
-    title: 'Introdução à Língua Portuguesa',
+    title: 'Aula de Interpretação de Texto',
     thumbnail: 'https://i.imgur.com/8cmNMnv.jpg',
-    description: 'Aprenda os fundamentos básicos da Língua Portuguesa nesta aula introdutória.',
+    description: 'Aprenda técnicas avançadas para interpretar diferentes gêneros textuais.',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
-    duration: '12:34',
+    duration: '15:20',
     subject: 'Português'
   },
   {
     id: 2,
-    title: 'Uso correto da vírgula',
+    title: 'Dicas de Redação para ENEM',
     thumbnail: 'https://i.imgur.com/9lkBhQy.jpg',
-    description: 'Descubra as regras para o uso correto da vírgula na língua portuguesa.',
+    description: 'Estratégias e técnicas para conseguir nota máxima na redação do ENEM.',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
-    duration: '8:21',
+    duration: '18:45',
     subject: 'Português'
   },
   {
     id: 3,
-    title: 'Concordância verbal',
+    title: 'Como Resolver Equações do 1º Grau',
     thumbnail: 'https://i.imgur.com/w5Rytdm.jpg',
-    description: 'Aprenda como fazer a concordância verbal corretamente em português.',
+    description: 'Passo a passo para resolver equações do primeiro grau com exemplos práticos.',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
-    duration: '15:47',
-    subject: 'Português'
+    duration: '12:30',
+    subject: 'Matemática'
   },
   {
     id: 4,
-    title: 'Interpretação de texto',
+    title: 'Leis de Newton com Exemplos',
     thumbnail: 'https://i.imgur.com/YwVR7of.jpg',
-    description: 'Técnicas e estratégias para melhorar sua capacidade de interpretação de texto.',
+    description: 'As três leis de Newton explicadas com exemplos do cotidiano.',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Replace with actual video URL
-    duration: '20:15',
-    subject: 'Português'
+    duration: '14:15',
+    subject: 'Física'
   }
 ];
 
-const Aulas = () => {
+const Videos = () => {
   const [openVideo, setOpenVideo] = useState<typeof videos[0] | null>(null);
 
   return (
     <Layout>
       <div className="revo-container py-10">
-        <h1 className="revo-page-title">Aulas em Vídeo</h1>
+        <h1 className="revo-page-title">Vídeos Educacionais</h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {videos.map((video) => (
@@ -80,7 +80,7 @@ const Aulas = () => {
                   className="revo-button w-full"
                 >
                   <Play className="mr-2 h-4 w-4" />
-                  Assistir Aula
+                  Assistir Vídeo
                 </Button>
               </div>
             </div>
@@ -113,4 +113,4 @@ const Aulas = () => {
   );
 };
 
-export default Aulas;
+export default Videos;

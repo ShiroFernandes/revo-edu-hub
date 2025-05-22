@@ -13,6 +13,7 @@ import Login from "@/pages/Login";
 import Aulas from "@/pages/Aulas";
 import Quiz from "@/pages/Quiz";
 import Exercicios from "@/pages/Exercicios";
+import Videos from "@/pages/Videos";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,14 @@ const App = () => (
               element={
                 <PrivateRoute>
                   <Quiz />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/videos"
+              element={
+                <PrivateRoute>
+                  <Videos />
                 </PrivateRoute>
               }
             />

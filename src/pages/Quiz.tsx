@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 
 // Quiz questions
 const questions = [
@@ -12,6 +11,7 @@ const questions = [
     question: 'Qual é o sujeito da frase: "Os alunos estudam à noite."?',
     options: ['Verbo', 'Os alunos', 'À noite', 'Nenhum'],
     correctAnswer: 'Os alunos',
+    subject: 'Português'
   },
   {
     id: 2,
@@ -23,12 +23,14 @@ const questions = [
       'Ela, foi ao mercado, e comprou pão',
     ],
     correctAnswer: 'Ela foi ao mercado, e comprou pão, leite, ovos',
+    subject: 'Português'
   },
   {
     id: 3,
     question: 'Qual a classe gramatical da palavra "rapidamente"?',
     options: ['Substantivo', 'Advérbio', 'Adjetivo', 'Verbo'],
     correctAnswer: 'Advérbio',
+    subject: 'Português'
   },
   {
     id: 4,
@@ -40,6 +42,7 @@ const questions = [
       'Um tipo de verbo',
     ],
     correctAnswer: 'Uma oração que depende de outra para fazer sentido',
+    subject: 'Português'
   },
   {
     id: 5,
@@ -51,6 +54,7 @@ const questions = [
       'O menino chegou cedo.',
     ],
     correctAnswer: 'As menina chegou cedo.',
+    subject: 'Português'
   },
 ];
 
@@ -108,104 +112,100 @@ const Quiz = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      <Header />
-      
-      <main className="flex-grow">
-        <div className="revo-container py-10">
-          <h1 className="revo-page-title">Quiz de Português</h1>
-          
-          <div className="max-w-3xl mx-auto">
-            <AnimatePresence mode="wait">
-              {!quizFinished ? (
-                <motion.div
-                  key="question"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-white rounded-xl shadow-lg p-6"
-                >
-                  <div className="flex justify-between items-center mb-6">
-                    <span className="text-lg font-medium text-gray-600">
-                      Questão {currentQuestion + 1} de {questions.length}
-                    </span>
-                    <span className="text-lg font-medium text-gray-600">
-                      Pontuação: {score}
-                    </span>
-                  </div>
-                  
-                  <h2 className="text-2xl font-semibold mb-6">
-                    {questions[currentQuestion].question}
-                  </h2>
-                  
-                  <div className="space-y-4 mb-6">
-                    {questions[currentQuestion].options.map((option, index) => (
-                      <div
-                        key={index}
-                        onClick={() => handleAnswerSelect(option)}
-                        className={`quiz-option ${isCorrectAnswer(option) ? 'correct' : ''} ${isWrongAnswer(option) ? 'incorrect' : ''}`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <span>{option}</span>
-                          {isCorrectAnswer(option) && (
-                            <div className="bg-green-100 p-1 rounded-full">
-                              <Check className="h-5 w-5 text-green-600" />
-                            </div>
-                          )}
-                          {isWrongAnswer(option) && (
-                            <div className="bg-red-100 p-1 rounded-full">
-                              <X className="h-5 w-5 text-red-600" />
-                            </div>
-                          )}
-                        </div>
+    <Layout>
+      <div className="revo-container py-10">
+        <h1 className="revo-page-title">Quiz de Português</h1>
+        
+        <div className="max-w-3xl mx-auto">
+          <AnimatePresence mode="wait">
+            {!quizFinished ? (
+              <motion.div
+                key="question"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+                className="bg-white rounded-xl shadow-lg p-6"
+              >
+                <div className="flex justify-between items-center mb-6">
+                  <span className="text-lg font-medium text-gray-600">
+                    Questão {currentQuestion + 1} de {questions.length}
+                  </span>
+                  <span className="text-lg font-medium text-gray-600">
+                    Pontuação: {score}
+                  </span>
+                </div>
+                
+                <h2 className="text-2xl font-semibold mb-6">
+                  {questions[currentQuestion].question}
+                </h2>
+                
+                <div className="space-y-4 mb-6">
+                  {questions[currentQuestion].options.map((option, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleAnswerSelect(option)}
+                      className={`quiz-option ${isCorrectAnswer(option) ? 'correct' : ''} ${isWrongAnswer(option) ? 'incorrect' : ''}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{option}</span>
+                        {isCorrectAnswer(option) && (
+                          <div className="bg-green-100 p-1 rounded-full">
+                            <Check className="h-5 w-5 text-green-600" />
+                          </div>
+                        )}
+                        {isWrongAnswer(option) && (
+                          <div className="bg-red-100 p-1 rounded-full">
+                            <X className="h-5 w-5 text-red-600" />
+                          </div>
+                        )}
                       </div>
-                    ))}
-                  </div>
-                  
-                  <Button
-                    onClick={handleNextQuestion}
-                    disabled={!isAnswered}
-                    className="w-full revo-button"
-                  >
-                    {currentQuestion < questions.length - 1 ? "Próxima Questão" : "Finalizar Quiz"}
-                  </Button>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="result"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-white rounded-xl shadow-lg p-8 text-center"
+                    </div>
+                  ))}
+                </div>
+                
+                <Button
+                  onClick={handleNextQuestion}
+                  disabled={!isAnswered}
+                  className="w-full revo-button"
                 >
-                  <h2 className="text-3xl font-bold mb-6">Quiz Finalizado!</h2>
-                  
-                  <div className="text-6xl font-bold mb-6 text-revo-purple">
-                    {score} / {questions.length}
-                  </div>
-                  
-                  <p className="text-xl mb-8">
-                    {score === questions.length 
-                      ? "Parabéns! Você acertou todas as questões!" 
-                      : score >= questions.length / 2 
-                        ? "Bom trabalho! Continue praticando." 
-                        : "Continue estudando e tente novamente."}
-                  </p>
-                  
-                  <Button
-                    onClick={handleRestartQuiz}
-                    className="revo-button"
-                  >
-                    Reiniciar Quiz
-                  </Button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                  {currentQuestion < questions.length - 1 ? "Próxima Questão" : "Finalizar Quiz"}
+                </Button>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="result"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-xl shadow-lg p-8 text-center"
+              >
+                <h2 className="text-3xl font-bold mb-6">Quiz Finalizado!</h2>
+                
+                <div className="text-6xl font-bold mb-6 text-revo-purple">
+                  {score} / {questions.length}
+                </div>
+                
+                <p className="text-xl mb-8">
+                  {score === questions.length 
+                    ? "Parabéns! Você acertou todas as questões!" 
+                    : score >= questions.length / 2 
+                      ? "Bom trabalho! Continue praticando." 
+                      : "Continue estudando e tente novamente."}
+                </p>
+                
+                <Button
+                  onClick={handleRestartQuiz}
+                  className="revo-button"
+                >
+                  Reiniciar Quiz
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

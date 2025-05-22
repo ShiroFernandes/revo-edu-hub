@@ -71,7 +71,7 @@ const Home = () => {
       
       {/* Background Carousel with Overlay */}
       <div className="absolute inset-0 z-0">
-        <Carousel className="w-full h-full" opts={{ loop: true, autoplay: true, interval: 5000, duration: 1000 }}>
+        <Carousel className="w-full h-full" opts={{ loop: true }}>
           <CarouselContent className="h-full">
             {carouselImages.map((image, index) => (
               <CarouselItem key={index} className="h-full">
