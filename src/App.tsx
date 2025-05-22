@@ -13,6 +13,7 @@ import Login from "@/pages/Login";
 import Aulas from "@/pages/Aulas";
 import Quiz from "@/pages/Quiz";
 import Exercicios from "@/pages/Exercicios";
+import ExerciciosSubject from "@/pages/ExerciciosSubject";
 import Videos from "@/pages/Videos";
 import Contato from "@/pages/Contato";
 import NotFound from "@/pages/NotFound";
@@ -65,6 +66,14 @@ const App = () => (
               element={
                 <PrivateRoute>
                   <Exercicios />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/exercicios/subject"
+              element={
+                <PrivateRoute>
+                  <ExerciciosSubject />
                 </PrivateRoute>
               }
             />

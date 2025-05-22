@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Menu } from 'lucide-react';
+import { Menu, LogOut } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
 import MobileNavigation from './MobileNavigation';
@@ -80,8 +80,9 @@ const Header = () => {
                 <DropdownMenuItem className="text-gray-700">
                   <span>{currentUser?.email}</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
-                  Sair
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer flex items-center">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Sair</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -105,8 +106,9 @@ const Header = () => {
                   <DropdownMenuItem className="text-gray-700">
                     <span>{currentUser?.email}</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
-                    Sair
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer flex items-center">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sair</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

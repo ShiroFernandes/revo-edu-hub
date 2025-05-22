@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   Home, 
   BookOpen, 
@@ -8,11 +9,15 @@ import {
   Globe, 
   Flame, 
   Atom, 
-  MessageSquare 
+  MessageSquare,
+  LogOut
 } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const MobileNavigation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const menuItems = [
     { 
@@ -57,6 +62,11 @@ const MobileNavigation = () => {
     }
   ];
 
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
+
   return (
     <div className="h-full flex flex-col bg-white">
       <div className="p-4 border-b">
@@ -86,7 +96,14 @@ const MobileNavigation = () => {
       </nav>
       
       <div className="p-4 border-t">
-        <p className="text-xs text-gray-500 text-center">© 2023 REVO Educação</p>
+        <button
+          onClick={handleLogout}
+          className="flex items-center p-3 rounded-md w-full text-red-600 hover:bg-red-50 transition-colors"
+        >
+          <LogOut className="mr-2 h-5 w-5" />
+          <span>Sair da conta</span>
+        </button>
+        <p className="text-xs text-gray-500 text-center mt-4">© 2023 REVO Educação</p>
       </div>
     </div>
   );
