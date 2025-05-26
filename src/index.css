@@ -76,14 +76,16 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f3f0ff 100%);
+    min-height: 100vh;
   }
 
   .revo-button {
-    @apply bg-revo-purple hover:bg-revo-purple-dark text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-revo-purple focus:ring-opacity-50;
+    @apply bg-gradient-to-r from-revo-purple to-purple-600 hover:from-purple-600 hover:to-revo-purple text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-revo-purple focus:ring-opacity-50;
   }
 
   .revo-card {
-    @apply bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300;
+    @apply bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-revo-purple border-opacity-20;
   }
   
   .revo-container {
@@ -91,11 +93,24 @@
   }
 
   .revo-page-title {
-    @apply text-4xl font-bold text-gray-800 mb-8 text-center;
+    @apply text-4xl font-bold text-gray-800 mb-8 text-center relative;
+  }
+
+  .revo-page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #D6C1E8, #B99ED2);
+    border-radius: 2px;
+    animation: glow 2s ease-in-out infinite alternate;
   }
 
   .quiz-option {
-    @apply border-2 border-gray-200 p-4 rounded-lg cursor-pointer hover:border-revo-purple transition-all duration-200;
+    @apply border-2 border-gray-200 p-4 rounded-lg cursor-pointer hover:border-revo-purple transition-all duration-200 transform hover:scale-105;
   }
 
   .quiz-option.correct {
@@ -104,5 +119,123 @@
 
   .quiz-option.incorrect {
     @apply border-red-500 bg-red-50 animate-error-shake;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D6C1E8;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B99ED2;
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #D6C1E8;
+  }
+  to {
+    box-shadow: 0 0 20px #D6C1E8, 0 0 30px #D6C1E8;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rainbow {
+  0% { color: #D6C1E8; }
+  16% { color: #ff6b6b; }
+  32% { color: #4ecdc4; }
+  48% { color: #45b7d1; }
+  64% { color: #96ceb4; }
+  80% { color: #feca57; }
+  100% { color: #D6C1E8; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-rainbow {
+  animation: rainbow 2s linear infinite;
+}
+
+/* Easter egg styles */
+.easter-egg-trigger:hover {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🎉%3C/text%3E%3C/svg%3E"), auto;
+}
+
+/* Gradient text animation */
+.gradient-text {
+  background: linear-gradient(-45deg, #D6C1E8, #ff6b6b, #4ecdc4, #45b7d1);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Loading animation for interactive elements */
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
+  }
+  40% {
+    color: #D6C1E8;
+    text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
+  }
+  60% {
+    text-shadow: .25em 0 0 #D6C1E8, .5em 0 0 rgba(0,0,0,0);
+  }
+  80%, 100% {
+    text-shadow: .25em 0 0 #D6C1E8, .5em 0 0 #D6C1E8;
   }
 }
