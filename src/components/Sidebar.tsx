@@ -14,6 +14,7 @@ import {
 const subjectsData = [
   {
     name: "Português",
+    slug: "portugues",
     icon: <BookOpen size={18} />,
     sections: {
       aulas: ["Interpretação de Texto", "Gramática", "Redação"],
@@ -23,6 +24,7 @@ const subjectsData = [
   },
   {
     name: "Matemática",
+    slug: "matematica",
     icon: <BookOpen size={18} />,
     sections: {
       aulas: ["Aritmética", "Álgebra", "Geometria", "Funções"],
@@ -32,6 +34,7 @@ const subjectsData = [
   },
   {
     name: "História",
+    slug: "historia",
     icon: <BookOpen size={18} />,
     sections: {
       aulas: ["Brasil Colônia e Império", "Revoluções e Guerras", "Ditadura Militar"],
@@ -41,6 +44,7 @@ const subjectsData = [
   },
   {
     name: "Geografia",
+    slug: "geografia",
     icon: <BookOpen size={18} />,
     sections: {
       aulas: ["Geografia Física", "Geopolítica", "Demografia"],
@@ -50,6 +54,7 @@ const subjectsData = [
   },
   {
     name: "Química",
+    slug: "quimica",
     icon: <BookOpen size={18} />,
     sections: {
       aulas: ["Tabela Periódica", "Reações e Equações", "Química Orgânica"],
@@ -59,6 +64,7 @@ const subjectsData = [
   },
   {
     name: "Física",
+    slug: "fisica",
     icon: <BookOpen size={18} />,
     sections: {
       aulas: ["Cinemática e Dinâmica", "Leis de Newton", "Óptica"],
@@ -103,11 +109,9 @@ const Sidebar = () => {
     );
   };
   
-  // Navigate to content page
-  const navigateToContent = (section: string, topic: string) => {
-    // In a real app, this would navigate to a specific content page
-    // For now, just navigate to the section
-    navigate(`/${section}`);
+  // Navigate to content page with subject parameter
+  const navigateToSection = (section: string, subjectSlug: string) => {
+    navigate(`/${section}?subject=${subjectSlug}`);
   };
 
   return (
@@ -123,7 +127,7 @@ const Sidebar = () => {
               onOpenChange={() => toggleSubject(subject.name)}
               className="border border-gray-200 rounded-md overflow-hidden mb-2"
             >
-              <CollapsibleTrigger className="flex items-center justify-between w-full p-3 text-left bg-white hover:bg-gray-50">
+              <CollapsibleTrigger className="flex items-center justify-between w-full p-3 text-left bg-white hover:bg-gray-50 transition-colors">
                 <div className="flex items-center">
                   {subject.icon}
                   <span className="ml-2 font-medium">{subject.name}</span>
@@ -145,8 +149,8 @@ const Sidebar = () => {
                   >
                     <CollapsibleTrigger 
                       className={cn(
-                        "flex items-center justify-between w-full p-2 text-left rounded",
-                        (currentTab === section) ? "bg-revo-purple bg-opacity-20" : "hover:bg-gray-200"
+                        "flex items-center justify-between w-full p-2 text-left rounded transition-colors",
+                        (currentTab === section) ? "bg-blue-100 text-blue-700" : "hover:bg-gray-200"
                       )}
                     >
                       <div className="flex items-center">
@@ -162,14 +166,19 @@ const Sidebar = () => {
                     
                     <CollapsibleContent>
                       <div className="ml-6 my-1 space-y-1">
+                        <button
+                          onClick={() => navigateToSection(section, subject.slug)}
+                          className="w-full text-left p-2 text-sm rounded hover:bg-blue-100 hover:text-blue-700 transition-colors bg-blue-50 text-blue-600 font-medium"
+                        >
+                          Ver todos os {section}
+                        </button>
                         {topics.map((topic) => (
-                          <button
+                          <div
                             key={topic}
-                            onClick={() => navigateToContent(section, topic)}
-                            className="w-full text-left p-2 text-sm rounded hover:bg-gray-200"
+                            className="w-full text-left p-2 text-sm rounded text-gray-600"
                           >
-                            {topic}
-                          </button>
+                            • {topic}
+                          </div>
                         ))}
                       </div>
                     </CollapsibleContent>

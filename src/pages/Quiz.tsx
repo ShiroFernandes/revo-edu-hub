@@ -84,9 +84,9 @@ const questionsBySubject = {
     },
     {
       id: 4,
-      question: 'Qual o valor de x na equação 3x - 9 = 0?',
-      options: ['x = 3', 'x = 6', 'x = 9', 'x = 1'],
-      correctAnswer: 'x = 3',
+      question: 'Se uma função f(x) = 2x + 3, qual é f(5)?',
+      options: ['13', '10', '8', '15'],
+      correctAnswer: '13',
       subject: 'Matemática'
     },
     {
@@ -114,23 +114,23 @@ const questionsBySubject = {
     },
     {
       id: 3,
-      question: 'Em que ano começou a Segunda Guerra Mundial?',
-      options: ['1939', '1914', '1945', '1941'],
-      correctAnswer: '1939',
+      question: 'Qual guerra marcou o fim do Império Romano do Ocidente?',
+      options: ['Guerra dos Cem Anos', 'Invasões Bárbaras', 'Guerra Púnica', 'Cruzadas'],
+      correctAnswer: 'Invasões Bárbaras',
       subject: 'História'
     },
     {
       id: 4,
-      question: 'Qual evento marcou o fim da Idade Média?',
+      question: 'Qual evento marcou o início da Idade Moderna?',
       options: ['Descobrimento da América', 'Queda de Constantinopla', 'Revolução Francesa', 'Reforma Protestante'],
       correctAnswer: 'Queda de Constantinopla',
       subject: 'História'
     },
     {
       id: 5,
-      question: 'Quem foi o líder da Revolução Cubana?',
-      options: ['Che Guevara', 'Fidel Castro', 'Hugo Chávez', 'Salvador Allende'],
-      correctAnswer: 'Fidel Castro',
+      question: 'Quem foi Napoleão Bonaparte?',
+      options: ['Rei da França', 'Imperador da França', 'Papa', 'Filósofo'],
+      correctAnswer: 'Imperador da França',
       subject: 'História'
     }
   ],
@@ -165,9 +165,9 @@ const questionsBySubject = {
     },
     {
       id: 5,
-      question: 'Qual é o rio mais extenso do mundo?',
-      options: ['Rio Nilo', 'Rio Amazonas', 'Rio Mississippi', 'Rio Yangtzé'],
-      correctAnswer: 'Rio Amazonas',
+      question: 'Qual processo forma as montanhas?',
+      options: ['Erosão', 'Tectonismo', 'Intemperismo', 'Sedimentação'],
+      correctAnswer: 'Tectonismo',
       subject: 'Geografia'
     }
   ],
@@ -188,9 +188,9 @@ const questionsBySubject = {
     },
     {
       id: 3,
-      question: 'Quantos elementos há na tabela periódica atual?',
-      options: ['108', '118', '112', '126'],
-      correctAnswer: '118',
+      question: 'Quantos prótons tem o átomo de carbono?',
+      options: ['4', '6', '8', '12'],
+      correctAnswer: '6',
       subject: 'Química'
     },
     {
@@ -202,9 +202,9 @@ const questionsBySubject = {
     },
     {
       id: 5,
-      question: 'Qual gás é mais abundante na atmosfera?',
-      options: ['Oxigênio', 'Nitrogênio', 'Dióxido de carbono', 'Argônio'],
-      correctAnswer: 'Nitrogênio',
+      question: 'Qual tipo de ligação ocorre entre Na e Cl?',
+      options: ['Covalente', 'Iônica', 'Metálica', 'Dipolo'],
+      correctAnswer: 'Iônica',
       subject: 'Química'
     }
   ],
@@ -232,16 +232,16 @@ const questionsBySubject = {
     },
     {
       id: 4,
-      question: 'O que acontece com a energia em um sistema isolado?',
-      options: ['Aumenta', 'Diminui', 'Se conserva', 'Varia aleatoriamente'],
-      correctAnswer: 'Se conserva',
+      question: 'Qual é a aceleração da gravidade na Terra?',
+      options: ['9,8 m/s²', '10 m/s²', '8,9 m/s²', '11 m/s²'],
+      correctAnswer: '9,8 m/s²',
       subject: 'Física'
     },
     {
       id: 5,
-      question: 'Qual tipo de onda é o som?',
-      options: ['Onda transversal', 'Onda longitudinal', 'Onda eletromagnética', 'Onda estacionária'],
-      correctAnswer: 'Onda longitudinal',
+      question: 'Qual fenômeno explica por que vemos o arco-íris?',
+      options: ['Reflexão', 'Refração', 'Dispersão', 'Difração'],
+      correctAnswer: 'Dispersão',
       subject: 'Física'
     }
   ]
@@ -291,15 +291,6 @@ const Quiz = () => {
     
     if (answer === questions[currentQuestion].correctAnswer) {
       setScore(score + 1);
-      // Play success sound
-      const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3');
-      audio.volume = 0.5;
-      audio.play();
-    } else {
-      // Play error sound
-      const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3');
-      audio.volume = 0.5;
-      audio.play();
     }
   };
 
@@ -370,10 +361,19 @@ const Quiz = () => {
                 
                 <div className="space-y-4 mb-6">
                   {questions[currentQuestion].options.map((option, index) => (
-                    <div
+                    <button
                       key={index}
                       onClick={() => handleAnswerSelect(option)}
-                      className={`quiz-option ${isCorrectAnswer(option) ? 'correct' : ''} ${isWrongAnswer(option) ? 'incorrect' : ''}`}
+                      disabled={isAnswered}
+                      className={`w-full p-4 text-left rounded-lg border-2 transition-all duration-300 ${
+                        isCorrectAnswer(option) 
+                          ? 'bg-green-100 border-green-500 text-green-700' 
+                          : isWrongAnswer(option)
+                          ? 'bg-red-100 border-red-500 text-red-700'
+                          : isAnswered
+                          ? 'bg-gray-100 border-gray-300 text-gray-500'
+                          : 'bg-white border-gray-300 hover:border-blue-400 hover:bg-blue-50'
+                      }`}
                     >
                       <div className="flex items-center justify-between">
                         <span>{option}</span>
@@ -388,14 +388,14 @@ const Quiz = () => {
                           </div>
                         )}
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
                 
                 <Button
                   onClick={handleNextQuestion}
                   disabled={!isAnswered}
-                  className="w-full revo-button"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {currentQuestion < questions.length - 1 ? "Próxima Questão" : "Finalizar Quiz"}
                 </Button>
@@ -410,7 +410,7 @@ const Quiz = () => {
               >
                 <h2 className="text-3xl font-bold mb-6">Quiz Finalizado!</h2>
                 
-                <div className="text-6xl font-bold mb-6 text-revo-purple">
+                <div className="text-6xl font-bold mb-6 text-blue-600">
                   {score} / {questions.length}
                 </div>
                 
@@ -424,7 +424,7 @@ const Quiz = () => {
                 
                 <Button
                   onClick={handleRestartQuiz}
-                  className="revo-button"
+                  className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium"
                 >
                   Reiniciar Quiz
                 </Button>
