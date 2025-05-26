@@ -1,69 +1,287 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
+import { useSearchParams } from 'react-router-dom';
 
-// Quiz questions
-const questions = [
-  {
-    id: 1,
-    question: 'Qual é o sujeito da frase: "Os alunos estudam à noite."?',
-    options: ['Verbo', 'Os alunos', 'À noite', 'Nenhum'],
-    correctAnswer: 'Os alunos',
-    subject: 'Português'
-  },
-  {
-    id: 2,
-    question: 'Onde se usa a vírgula corretamente?',
-    options: [
-      'Ela foi ao mercado e comprou pão leite ovos',
-      'Ela foi ao mercado, e comprou pão, leite, ovos',
-      'Ela foi ao mercado e, comprou, pão leite ovos',
-      'Ela, foi ao mercado, e comprou pão',
-    ],
-    correctAnswer: 'Ela foi ao mercado, e comprou pão, leite, ovos',
-    subject: 'Português'
-  },
-  {
-    id: 3,
-    question: 'Qual a classe gramatical da palavra "rapidamente"?',
-    options: ['Substantivo', 'Advérbio', 'Adjetivo', 'Verbo'],
-    correctAnswer: 'Advérbio',
-    subject: 'Português'
-  },
-  {
-    id: 4,
-    question: 'O que é uma oração subordinada?',
-    options: [
-      'Uma oração que depende de outra para fazer sentido',
-      'Uma oração independente',
-      'Uma oração sem sujeito',
-      'Um tipo de verbo',
-    ],
-    correctAnswer: 'Uma oração que depende de outra para fazer sentido',
-    subject: 'Português'
-  },
-  {
-    id: 5,
-    question: 'Marque a frase com erro de concordância:',
-    options: [
-      'Os meninos chegaram cedo.',
-      'As menina chegou cedo.',
-      'As meninas chegaram cedo.',
-      'O menino chegou cedo.',
-    ],
-    correctAnswer: 'As menina chegou cedo.',
-    subject: 'Português'
-  },
-];
+// Quiz questions by subject
+const questionsBySubject = {
+  portugues: [
+    {
+      id: 1,
+      question: 'Qual é o sujeito da frase: "Os alunos estudam à noite."?',
+      options: ['Verbo', 'Os alunos', 'À noite', 'Nenhum'],
+      correctAnswer: 'Os alunos',
+      subject: 'Português'
+    },
+    {
+      id: 2,
+      question: 'Onde se usa a vírgula corretamente?',
+      options: [
+        'Ela foi ao mercado e comprou pão leite ovos',
+        'Ela foi ao mercado, e comprou pão, leite, ovos',
+        'Ela foi ao mercado e, comprou, pão leite ovos',
+        'Ela, foi ao mercado, e comprou pão',
+      ],
+      correctAnswer: 'Ela foi ao mercado, e comprou pão, leite, ovos',
+      subject: 'Português'
+    },
+    {
+      id: 3,
+      question: 'Qual a classe gramatical da palavra "rapidamente"?',
+      options: ['Substantivo', 'Advérbio', 'Adjetivo', 'Verbo'],
+      correctAnswer: 'Advérbio',
+      subject: 'Português'
+    },
+    {
+      id: 4,
+      question: 'O que é uma oração subordinada?',
+      options: [
+        'Uma oração que depende de outra para fazer sentido',
+        'Uma oração independente',
+        'Uma oração sem sujeito',
+        'Um tipo de verbo',
+      ],
+      correctAnswer: 'Uma oração que depende de outra para fazer sentido',
+      subject: 'Português'
+    },
+    {
+      id: 5,
+      question: 'Marque a frase com erro de concordância:',
+      options: [
+        'Os meninos chegaram cedo.',
+        'As menina chegou cedo.',
+        'As meninas chegaram cedo.',
+        'O menino chegou cedo.',
+      ],
+      correctAnswer: 'As menina chegou cedo.',
+      subject: 'Português'
+    },
+  ],
+  matematica: [
+    {
+      id: 1,
+      question: 'Qual o resultado de 2x + 5 = 15?',
+      options: ['x = 5', 'x = 10', 'x = 7', 'x = 3'],
+      correctAnswer: 'x = 5',
+      subject: 'Matemática'
+    },
+    {
+      id: 2,
+      question: 'Qual a área de um quadrado de lado 4cm?',
+      options: ['16cm²', '8cm²', '12cm²', '20cm²'],
+      correctAnswer: '16cm²',
+      subject: 'Matemática'
+    },
+    {
+      id: 3,
+      question: 'Quanto é 15% de 200?',
+      options: ['30', '25', '35', '20'],
+      correctAnswer: '30',
+      subject: 'Matemática'
+    },
+    {
+      id: 4,
+      question: 'Qual o valor de x na equação 3x - 9 = 0?',
+      options: ['x = 3', 'x = 6', 'x = 9', 'x = 1'],
+      correctAnswer: 'x = 3',
+      subject: 'Matemática'
+    },
+    {
+      id: 5,
+      question: 'Qual a fórmula da área do círculo?',
+      options: ['πr²', '2πr', 'πd', 'πr'],
+      correctAnswer: 'πr²',
+      subject: 'Matemática'
+    }
+  ],
+  historia: [
+    {
+      id: 1,
+      question: 'Em que ano o Brasil se tornou independente?',
+      options: ['1822', '1889', '1500', '1824'],
+      correctAnswer: '1822',
+      subject: 'História'
+    },
+    {
+      id: 2,
+      question: 'Quem foi o primeiro presidente do Brasil?',
+      options: ['Getúlio Vargas', 'Deodoro da Fonseca', 'Dom Pedro I', 'Juscelino Kubitschek'],
+      correctAnswer: 'Deodoro da Fonseca',
+      subject: 'História'
+    },
+    {
+      id: 3,
+      question: 'Em que ano começou a Segunda Guerra Mundial?',
+      options: ['1939', '1914', '1945', '1941'],
+      correctAnswer: '1939',
+      subject: 'História'
+    },
+    {
+      id: 4,
+      question: 'Qual evento marcou o fim da Idade Média?',
+      options: ['Descobrimento da América', 'Queda de Constantinopla', 'Revolução Francesa', 'Reforma Protestante'],
+      correctAnswer: 'Queda de Constantinopla',
+      subject: 'História'
+    },
+    {
+      id: 5,
+      question: 'Quem foi o líder da Revolução Cubana?',
+      options: ['Che Guevara', 'Fidel Castro', 'Hugo Chávez', 'Salvador Allende'],
+      correctAnswer: 'Fidel Castro',
+      subject: 'História'
+    }
+  ],
+  geografia: [
+    {
+      id: 1,
+      question: 'Qual é o maior país do mundo em território?',
+      options: ['China', 'Estados Unidos', 'Rússia', 'Brasil'],
+      correctAnswer: 'Rússia',
+      subject: 'Geografia'
+    },
+    {
+      id: 2,
+      question: 'Qual é a capital da Austrália?',
+      options: ['Sydney', 'Melbourne', 'Canberra', 'Perth'],
+      correctAnswer: 'Canberra',
+      subject: 'Geografia'
+    },
+    {
+      id: 3,
+      question: 'Qual o maior bioma brasileiro?',
+      options: ['Cerrado', 'Amazônia', 'Caatinga', 'Mata Atlântica'],
+      correctAnswer: 'Amazônia',
+      subject: 'Geografia'
+    },
+    {
+      id: 4,
+      question: 'Qual linha imaginária divide a Terra em hemisférios Norte e Sul?',
+      options: ['Trópico de Câncer', 'Meridiano de Greenwich', 'Linha do Equador', 'Trópico de Capricórnio'],
+      correctAnswer: 'Linha do Equador',
+      subject: 'Geografia'
+    },
+    {
+      id: 5,
+      question: 'Qual é o rio mais extenso do mundo?',
+      options: ['Rio Nilo', 'Rio Amazonas', 'Rio Mississippi', 'Rio Yangtzé'],
+      correctAnswer: 'Rio Amazonas',
+      subject: 'Geografia'
+    }
+  ],
+  quimica: [
+    {
+      id: 1,
+      question: 'Qual é o símbolo químico do ouro?',
+      options: ['Au', 'Ag', 'Go', 'Or'],
+      correctAnswer: 'Au',
+      subject: 'Química'
+    },
+    {
+      id: 2,
+      question: 'Qual é a fórmula química da água?',
+      options: ['H₂O', 'CO₂', 'NaCl', 'O₂'],
+      correctAnswer: 'H₂O',
+      subject: 'Química'
+    },
+    {
+      id: 3,
+      question: 'Quantos elementos há na tabela periódica atual?',
+      options: ['108', '118', '112', '126'],
+      correctAnswer: '118',
+      subject: 'Química'
+    },
+    {
+      id: 4,
+      question: 'Qual o pH da água pura?',
+      options: ['6', '7', '8', '5'],
+      correctAnswer: '7',
+      subject: 'Química'
+    },
+    {
+      id: 5,
+      question: 'Qual gás é mais abundante na atmosfera?',
+      options: ['Oxigênio', 'Nitrogênio', 'Dióxido de carbono', 'Argônio'],
+      correctAnswer: 'Nitrogênio',
+      subject: 'Química'
+    }
+  ],
+  fisica: [
+    {
+      id: 1,
+      question: 'Qual é a fórmula da segunda lei de Newton?',
+      options: ['F = m.a', 'E = mc²', 'v = d/t', 'P = F/A'],
+      correctAnswer: 'F = m.a',
+      subject: 'Física'
+    },
+    {
+      id: 2,
+      question: 'Qual é a velocidade da luz no vácuo?',
+      options: ['300.000 km/s', '150.000 km/s', '500.000 km/s', '200.000 km/s'],
+      correctAnswer: '300.000 km/s',
+      subject: 'Física'
+    },
+    {
+      id: 3,
+      question: 'Qual é a unidade de medida da força?',
+      options: ['Joule', 'Newton', 'Watt', 'Pascal'],
+      correctAnswer: 'Newton',
+      subject: 'Física'
+    },
+    {
+      id: 4,
+      question: 'O que acontece com a energia em um sistema isolado?',
+      options: ['Aumenta', 'Diminui', 'Se conserva', 'Varia aleatoriamente'],
+      correctAnswer: 'Se conserva',
+      subject: 'Física'
+    },
+    {
+      id: 5,
+      question: 'Qual tipo de onda é o som?',
+      options: ['Onda transversal', 'Onda longitudinal', 'Onda eletromagnética', 'Onda estacionária'],
+      correctAnswer: 'Onda longitudinal',
+      subject: 'Física'
+    }
+  ]
+};
+
+const subjectDisplayNames = {
+  'portugues': 'Português',
+  'matematica': 'Matemática', 
+  'historia': 'História',
+  'geografia': 'Geografia',
+  'quimica': 'Química',
+  'fisica': 'Física'
+};
 
 const Quiz = () => {
+  const [searchParams] = useSearchParams();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
+  const [questions, setQuestions] = useState<typeof questionsBySubject.portugues>([]);
+  const [currentSubject, setCurrentSubject] = useState('portugues');
+  
+  useEffect(() => {
+    const subjectParam = searchParams.get('subject') || 'portugues';
+    const validSubject = questionsBySubject[subjectParam as keyof typeof questionsBySubject] 
+      ? subjectParam 
+      : 'portugues';
+      
+    setCurrentSubject(validSubject);
+    setQuestions(questionsBySubject[validSubject as keyof typeof questionsBySubject]);
+    
+    // Reset quiz state when subject changes
+    setCurrentQuestion(0);
+    setSelectedAnswer('');
+    setIsAnswered(false);
+    setScore(0);
+    setQuizFinished(false);
+  }, [searchParams]);
   
   const handleAnswerSelect = (answer: string) => {
     if (isAnswered) return;
@@ -111,10 +329,20 @@ const Quiz = () => {
     return isAnswered && selectedAnswer === answer && answer !== questions[currentQuestion].correctAnswer;
   };
 
+  if (questions.length === 0) {
+    return (
+      <Layout>
+        <div className="revo-container py-10">
+          <h1 className="revo-page-title">Carregando Quiz...</h1>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="revo-container py-10">
-        <h1 className="revo-page-title">Quiz de Português</h1>
+        <h1 className="revo-page-title">Quiz de {subjectDisplayNames[currentSubject as keyof typeof subjectDisplayNames]}</h1>
         
         <div className="max-w-3xl mx-auto">
           <AnimatePresence mode="wait">

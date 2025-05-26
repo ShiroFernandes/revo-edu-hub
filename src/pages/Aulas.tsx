@@ -64,49 +64,175 @@ const allVideos = {
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '10:45',
       subject: 'Matemática'
+    },
+    {
+      id: 7,
+      title: 'Funções Lineares',
+      thumbnail: 'https://i.imgur.com/8QZHpHm.jpg',
+      description: 'Entenda o conceito de funções lineares e como representá-las graficamente.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '18:30',
+      subject: 'Matemática'
+    },
+    {
+      id: 8,
+      title: 'Geometria Básica',
+      thumbnail: 'https://i.imgur.com/yWcx7pt.jpg',
+      description: 'Formas geométricas, perímetros e áreas explicados de forma simples.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '16:05',
+      subject: 'Matemática'
     }
   ],
   historia: [
     {
-      id: 7,
+      id: 9,
       title: 'Brasil Colônia',
       thumbnail: 'https://i.imgur.com/8QZHpHm.jpg',
       description: 'A história do Brasil durante o período colonial português.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '18:30',
       subject: 'História'
+    },
+    {
+      id: 10,
+      title: 'Independência do Brasil',
+      thumbnail: 'https://i.imgur.com/ZHn6YNO.jpg',
+      description: 'Os eventos que levaram à independência do Brasil em 1822.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '15:40',
+      subject: 'História'
+    },
+    {
+      id: 11,
+      title: 'Segunda Guerra Mundial',
+      thumbnail: 'https://i.imgur.com/kXw3L3j.jpg',
+      description: 'As causas, desenvolvimento e consequências da Segunda Guerra Mundial.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '22:15',
+      subject: 'História'
+    },
+    {
+      id: 12,
+      title: 'Revolução Industrial',
+      thumbnail: 'https://i.imgur.com/w5Rytdm.jpg',
+      description: 'Como a Revolução Industrial transformou a sociedade mundial.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '19:45',
+      subject: 'História'
     }
   ],
   geografia: [
     {
-      id: 8,
+      id: 13,
       title: 'Clima e Vegetação do Brasil',
       thumbnail: 'https://i.imgur.com/yWcx7pt.jpg',
       description: 'Entenda os diferentes climas e biomas presentes no território brasileiro.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '16:05',
       subject: 'Geografia'
+    },
+    {
+      id: 14,
+      title: 'Relevo Brasileiro',
+      thumbnail: 'https://i.imgur.com/NRWvt5i.jpg',
+      description: 'Características do relevo brasileiro: planaltos, planícies e depressões.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '14:20',
+      subject: 'Geografia'
+    },
+    {
+      id: 15,
+      title: 'Hidrografia do Brasil',
+      thumbnail: 'https://i.imgur.com/2JVCPUI.jpg',
+      description: 'As principais bacias hidrográficas brasileiras e sua importância.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '17:30',
+      subject: 'Geografia'
+    },
+    {
+      id: 16,
+      title: 'Urbanização Mundial',
+      thumbnail: 'https://i.imgur.com/8QZHpHm.jpg',
+      description: 'O processo de urbanização e seus impactos no mundo moderno.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '20:10',
+      subject: 'Geografia'
     }
   ],
   quimica: [
     {
-      id: 9,
+      id: 17,
       title: 'Tabela Periódica',
       thumbnail: 'https://i.imgur.com/ZHn6YNO.jpg',
       description: 'Aprenda sobre a organização e características dos elementos na tabela periódica.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '15:40',
       subject: 'Química'
+    },
+    {
+      id: 18,
+      title: 'Ligações Químicas',
+      thumbnail: 'https://i.imgur.com/kXw3L3j.jpg',
+      description: 'Entenda os tipos de ligações químicas: iônicas, covalentes e metálicas.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '18:25',
+      subject: 'Química'
+    },
+    {
+      id: 19,
+      title: 'Reações Químicas',
+      thumbnail: 'https://i.imgur.com/w5Rytdm.jpg',
+      description: 'Como identificar e balancear reações químicas básicas.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '16:50',
+      subject: 'Química'
+    },
+    {
+      id: 20,
+      title: 'Estados da Matéria',
+      thumbnail: 'https://i.imgur.com/YwVR7of.jpg',
+      description: 'Sólido, líquido, gasoso: propriedades e mudanças de estado.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '13:15',
+      subject: 'Química'
     }
   ],
   fisica: [
     {
-      id: 10,
+      id: 21,
       title: 'Leis de Newton',
       thumbnail: 'https://i.imgur.com/kXw3L3j.jpg',
       description: 'Entenda as três leis do movimento formuladas por Isaac Newton.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '17:20',
+      subject: 'Física'
+    },
+    {
+      id: 22,
+      title: 'Cinemática',
+      thumbnail: 'https://i.imgur.com/8cmNMnv.jpg',
+      description: 'Movimento uniforme, aceleração e movimento retilíneo.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '19:30',
+      subject: 'Física'
+    },
+    {
+      id: 23,
+      title: 'Energia e Trabalho',
+      thumbnail: 'https://i.imgur.com/9lkBhQy.jpg',
+      description: 'Conceitos fundamentais de energia cinética, potencial e trabalho.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '21:45',
+      subject: 'Física'
+    },
+    {
+      id: 24,
+      title: 'Óptica Básica',
+      thumbnail: 'https://i.imgur.com/NRWvt5i.jpg',
+      description: 'Luz, reflexão, refração e formação de imagens.',
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      duration: '14:55',
       subject: 'Física'
     }
   ]
