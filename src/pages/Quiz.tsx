@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X } from 'lucide-react';
@@ -244,6 +243,87 @@ const questionsBySubject = {
       correctAnswer: 'Dispersão',
       subject: 'Física'
     }
+  ],
+  informatica: [
+    {
+      id: 1,
+      question: 'O que significa CPU?',
+      options: ['Central Processing Unit', 'Computer Personal Unit', 'Central Program Unit', 'Computer Processing Unit'],
+      correctAnswer: 'Central Processing Unit',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 2,
+      question: 'Qual a função do sistema operacional?',
+      options: [
+        'Apenas executar programas',
+        'Gerenciar recursos do computador e servir de interface',
+        'Armazenar dados permanentemente',
+        'Conectar à internet'
+      ],
+      correctAnswer: 'Gerenciar recursos do computador e servir de interface',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 3,
+      question: 'O que é RAM?',
+      options: [
+        'Memória de armazenamento permanente',
+        'Memória de acesso aleatório temporária',
+        'Processador do computador',
+        'Placa de vídeo'
+      ],
+      correctAnswer: 'Memória de acesso aleatório temporária',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 4,
+      question: 'Qual a diferença entre hardware e software?',
+      options: [
+        'Não há diferença',
+        'Hardware são programas, software são peças físicas',
+        'Hardware são componentes físicos, software são programas',
+        'Hardware é mais importante que software'
+      ],
+      correctAnswer: 'Hardware são componentes físicos, software são programas',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 5,
+      question: 'O que é um navegador web?',
+      options: [
+        'Um programa para navegar em arquivos locais',
+        'Um programa para acessar e visualizar páginas da internet',
+        'Um tipo de sistema operacional',
+        'Um componente de hardware'
+      ],
+      correctAnswer: 'Um programa para acessar e visualizar páginas da internet',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 6,
+      question: 'Qual a função do antivírus?',
+      options: [
+        'Acelerar o computador',
+        'Proteger contra programas maliciosos',
+        'Organizar arquivos',
+        'Conectar à internet'
+      ],
+      correctAnswer: 'Proteger contra programas maliciosos',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 7,
+      question: 'O que significa URL?',
+      options: [
+        'Universal Resource Locator',
+        'Uniform Resource Locator',
+        'United Resource Link',
+        'Universal Reference Link'
+      ],
+      correctAnswer: 'Uniform Resource Locator',
+      subject: 'Informática Básica'
+    }
   ]
 };
 
@@ -253,7 +333,8 @@ const subjectDisplayNames = {
   'historia': 'História',
   'geografia': 'Geografia',
   'quimica': 'Química',
-  'fisica': 'Física'
+  'fisica': 'Física',
+  'informatica': 'Informática Básica'
 };
 
 const Quiz = () => {

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ChevronDown, ChevronRight, BookOpen, Video, FileQuestion } from 'lucide-react';
+import { ChevronDown, ChevronRight, BookOpen, Video, FileQuestion, Monitor } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import {
@@ -70,6 +70,16 @@ const subjectsData = [
       aulas: ["Cinemática e Dinâmica", "Leis de Newton", "Óptica"],
       quiz: ["Movimento e Força", "Leis de Newton", "Óptica"],
       videos: ["Leis de Newton", "Experimentos", "Energia e Trabalho"]
+    }
+  },
+  {
+    name: "Informática Básica",
+    slug: "informatica",
+    icon: <Monitor size={18} />,
+    sections: {
+      aulas: ["Conceitos Básicos", "Sistema Operacional", "Internet e Navegadores"],
+      quiz: ["Hardware e Software", "Sistema Operacional", "Internet Básica"],
+      videos: ["Introdução à Informática", "Navegação Segura", "Programas Básicos"]
     }
   }
 ];
