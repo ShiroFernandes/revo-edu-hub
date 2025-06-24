@@ -5,323 +5,207 @@ import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import { useSearchParams } from 'react-router-dom';
 
-// Quiz questions by subject
+// Quiz questions by subject - Questões muito básicas para iniciantes
 const questionsBySubject = {
   portugues: [
     {
       id: 1,
-      question: 'Qual é o sujeito da frase: "Os alunos estudam à noite."?',
-      options: ['Verbo', 'Os alunos', 'À noite', 'Nenhum'],
-      correctAnswer: 'Os alunos',
+      question: 'Quantas letras tem o alfabeto?',
+      options: ['24 letras', '26 letras', '28 letras', '30 letras'],
+      correctAnswer: '26 letras',
       subject: 'Português'
     },
     {
       id: 2,
-      question: 'Onde se usa a vírgula corretamente?',
-      options: [
-        'Ela foi ao mercado e comprou pão leite ovos',
-        'Ela foi ao mercado, e comprou pão, leite, ovos',
-        'Ela foi ao mercado e, comprou, pão leite ovos',
-        'Ela, foi ao mercado, e comprou pão',
-      ],
-      correctAnswer: 'Ela foi ao mercado, e comprou pão, leite, ovos',
+      question: 'Qual é a primeira letra do alfabeto?',
+      options: ['B', 'A', 'C', 'D'],
+      correctAnswer: 'A',
       subject: 'Português'
     },
     {
       id: 3,
-      question: 'Qual a classe gramatical da palavra "rapidamente"?',
-      options: ['Substantivo', 'Advérbio', 'Adjetivo', 'Verbo'],
-      correctAnswer: 'Advérbio',
+      question: 'Como se escreve o número "dois" em palavras?',
+      options: ['dous', 'dose', 'dois', 'dols'],
+      correctAnswer: 'dois',
       subject: 'Português'
     },
     {
       id: 4,
-      question: 'O que é uma oração subordinada?',
-      options: [
-        'Uma oração que depende de outra para fazer sentido',
-        'Uma oração independente',
-        'Uma oração sem sujeito',
-        'Um tipo de verbo',
-      ],
-      correctAnswer: 'Uma oração que depende de outra para fazer sentido',
+      question: 'Qual palavra significa "bom dia"?',
+      options: ['Boa tarde', 'Boa noite', 'Bom dia', 'Até logo'],
+      correctAnswer: 'Bom dia',
       subject: 'Português'
     },
     {
       id: 5,
-      question: 'Marque a frase com erro de concordância:',
-      options: [
-        'Os meninos chegaram cedo.',
-        'As menina chegou cedo.',
-        'As meninas chegaram cedo.',
-        'O menino chegou cedo.',
-      ],
-      correctAnswer: 'As menina chegou cedo.',
+      question: 'Quantas vogais existem?',
+      options: ['4', '5', '6', '7'],
+      correctAnswer: '5',
       subject: 'Português'
     },
+    {
+      id: 6,
+      question: 'Qual é o oposto de "grande"?',
+      options: ['Alto', 'Pequeno', 'Largo', 'Comprido'],
+      correctAnswer: 'Pequeno',
+      subject: 'Português'
+    },
+    {
+      id: 7,
+      question: 'Como se chama o lugar onde compramos remédios?',
+      options: ['Padaria', 'Farmácia', 'Mercado', 'Açougue'],
+      correctAnswer: 'Farmácia',
+      subject: 'Português'
+    },
+    {
+      id: 8,
+      question: 'Qual destas palavras está escrita corretamente?',
+      options: ['Casa', 'Kasa', 'Caza', 'Kaza'],
+      correctAnswer: 'Casa',
+      subject: 'Português'
+    }
   ],
   matematica: [
     {
       id: 1,
-      question: 'Qual o resultado de 2x + 5 = 15?',
-      options: ['x = 5', 'x = 10', 'x = 7', 'x = 3'],
-      correctAnswer: 'x = 5',
+      question: 'Quanto é 1 + 1?',
+      options: ['1', '2', '3', '4'],
+      correctAnswer: '2',
       subject: 'Matemática'
     },
     {
       id: 2,
-      question: 'Qual a área de um quadrado de lado 4cm?',
-      options: ['16cm²', '8cm²', '12cm²', '20cm²'],
-      correctAnswer: '16cm²',
+      question: 'Quanto é 5 - 2?',
+      options: ['2', '3', '4', '7'],
+      correctAnswer: '3',
       subject: 'Matemática'
     },
     {
       id: 3,
-      question: 'Quanto é 15% de 200?',
-      options: ['30', '25', '35', '20'],
-      correctAnswer: '30',
+      question: 'Quantos dedos temos em uma mão?',
+      options: ['4', '5', '6', '10'],
+      correctAnswer: '5',
       subject: 'Matemática'
     },
     {
       id: 4,
-      question: 'Se uma função f(x) = 2x + 3, qual é f(5)?',
-      options: ['13', '10', '8', '15'],
-      correctAnswer: '13',
+      question: 'Se você tem 2 reais e ganha mais 3 reais, quanto você tem?',
+      options: ['4 reais', '5 reais', '6 reais', '1 real'],
+      correctAnswer: '5 reais',
       subject: 'Matemática'
     },
     {
       id: 5,
-      question: 'Qual a fórmula da área do círculo?',
-      options: ['πr²', '2πr', 'πd', 'πr'],
-      correctAnswer: 'πr²',
+      question: 'Quantas horas tem um dia?',
+      options: ['12 horas', '20 horas', '24 horas', '30 horas'],
+      correctAnswer: '24 horas',
       subject: 'Matemática'
-    }
-  ],
-  historia: [
-    {
-      id: 1,
-      question: 'Em que ano o Brasil se tornou independente?',
-      options: ['1822', '1889', '1500', '1824'],
-      correctAnswer: '1822',
-      subject: 'História'
     },
     {
-      id: 2,
-      question: 'Quem foi o primeiro presidente do Brasil?',
-      options: ['Getúlio Vargas', 'Deodoro da Fonseca', 'Dom Pedro I', 'Juscelino Kubitschek'],
-      correctAnswer: 'Deodoro da Fonseca',
-      subject: 'História'
+      id: 6,
+      question: 'Quanto é 10 - 5?',
+      options: ['3', '4', '5', '15'],
+      correctAnswer: '5',
+      subject: 'Matemática'
     },
     {
-      id: 3,
-      question: 'Qual guerra marcou o fim do Império Romano do Ocidente?',
-      options: ['Guerra dos Cem Anos', 'Invasões Bárbaras', 'Guerra Púnica', 'Cruzadas'],
-      correctAnswer: 'Invasões Bárbaras',
-      subject: 'História'
+      id: 7,
+      question: 'Quantos lados tem um triângulo?',
+      options: ['2', '3', '4', '5'],
+      correctAnswer: '3',
+      subject: 'Matemática'
     },
     {
-      id: 4,
-      question: 'Qual evento marcou o início da Idade Moderna?',
-      options: ['Descobrimento da América', 'Queda de Constantinopla', 'Revolução Francesa', 'Reforma Protestante'],
-      correctAnswer: 'Queda de Constantinopla',
-      subject: 'História'
+      id: 8,
+      question: 'Se você comprar um pão por R$ 1,00 e pagar com R$ 2,00, quanto receberá de troco?',
+      options: ['R$ 1,00', 'R$ 2,00', 'R$ 3,00', 'Nada'],
+      correctAnswer: 'R$ 1,00',
+      subject: 'Matemática'
     },
     {
-      id: 5,
-      question: 'Quem foi Napoleão Bonaparte?',
-      options: ['Rei da França', 'Imperador da França', 'Papa', 'Filósofo'],
-      correctAnswer: 'Imperador da França',
-      subject: 'História'
-    }
-  ],
-  geografia: [
-    {
-      id: 1,
-      question: 'Qual é o maior país do mundo em território?',
-      options: ['China', 'Estados Unidos', 'Rússia', 'Brasil'],
-      correctAnswer: 'Rússia',
-      subject: 'Geografia'
+      id: 9,
+      question: 'Quanto é 2 + 2?',
+      options: ['3', '4', '5', '22'],
+      correctAnswer: '4',
+      subject: 'Matemática'
     },
     {
-      id: 2,
-      question: 'Qual é a capital da Austrália?',
-      options: ['Sydney', 'Melbourne', 'Canberra', 'Perth'],
-      correctAnswer: 'Canberra',
-      subject: 'Geografia'
-    },
-    {
-      id: 3,
-      question: 'Qual o maior bioma brasileiro?',
-      options: ['Cerrado', 'Amazônia', 'Caatinga', 'Mata Atlântica'],
-      correctAnswer: 'Amazônia',
-      subject: 'Geografia'
-    },
-    {
-      id: 4,
-      question: 'Qual linha imaginária divide a Terra em hemisférios Norte e Sul?',
-      options: ['Trópico de Câncer', 'Meridiano de Greenwich', 'Linha do Equador', 'Trópico de Capricórnio'],
-      correctAnswer: 'Linha do Equador',
-      subject: 'Geografia'
-    },
-    {
-      id: 5,
-      question: 'Qual processo forma as montanhas?',
-      options: ['Erosão', 'Tectonismo', 'Intemperismo', 'Sedimentação'],
-      correctAnswer: 'Tectonismo',
-      subject: 'Geografia'
-    }
-  ],
-  quimica: [
-    {
-      id: 1,
-      question: 'Qual é o símbolo químico do ouro?',
-      options: ['Au', 'Ag', 'Go', 'Or'],
-      correctAnswer: 'Au',
-      subject: 'Química'
-    },
-    {
-      id: 2,
-      question: 'Qual é a fórmula química da água?',
-      options: ['H₂O', 'CO₂', 'NaCl', 'O₂'],
-      correctAnswer: 'H₂O',
-      subject: 'Química'
-    },
-    {
-      id: 3,
-      question: 'Quantos prótons tem o átomo de carbono?',
-      options: ['4', '6', '8', '12'],
-      correctAnswer: '6',
-      subject: 'Química'
-    },
-    {
-      id: 4,
-      question: 'Qual o pH da água pura?',
-      options: ['6', '7', '8', '5'],
-      correctAnswer: '7',
-      subject: 'Química'
-    },
-    {
-      id: 5,
-      question: 'Qual tipo de ligação ocorre entre Na e Cl?',
-      options: ['Covalente', 'Iônica', 'Metálica', 'Dipolo'],
-      correctAnswer: 'Iônica',
-      subject: 'Química'
-    }
-  ],
-  fisica: [
-    {
-      id: 1,
-      question: 'Qual é a fórmula da segunda lei de Newton?',
-      options: ['F = m.a', 'E = mc²', 'v = d/t', 'P = F/A'],
-      correctAnswer: 'F = m.a',
-      subject: 'Física'
-    },
-    {
-      id: 2,
-      question: 'Qual é a velocidade da luz no vácuo?',
-      options: ['300.000 km/s', '150.000 km/s', '500.000 km/s', '200.000 km/s'],
-      correctAnswer: '300.000 km/s',
-      subject: 'Física'
-    },
-    {
-      id: 3,
-      question: 'Qual é a unidade de medida da força?',
-      options: ['Joule', 'Newton', 'Watt', 'Pascal'],
-      correctAnswer: 'Newton',
-      subject: 'Física'
-    },
-    {
-      id: 4,
-      question: 'Qual é a aceleração da gravidade na Terra?',
-      options: ['9,8 m/s²', '10 m/s²', '8,9 m/s²', '11 m/s²'],
-      correctAnswer: '9,8 m/s²',
-      subject: 'Física'
-    },
-    {
-      id: 5,
-      question: 'Qual fenômeno explica por que vemos o arco-íris?',
-      options: ['Reflexão', 'Refração', 'Dispersão', 'Difração'],
-      correctAnswer: 'Dispersão',
-      subject: 'Física'
+      id: 10,
+      question: 'Quantos minutos tem uma hora?',
+      options: ['50 minutos', '60 minutos', '70 minutos', '100 minutos'],
+      correctAnswer: '60 minutos',
+      subject: 'Matemática'
     }
   ],
   informatica: [
     {
       id: 1,
-      question: 'O que significa CPU?',
-      options: ['Central Processing Unit', 'Computer Personal Unit', 'Central Program Unit', 'Computer Processing Unit'],
-      correctAnswer: 'Central Processing Unit',
+      question: 'Como ligamos o computador?',
+      options: ['Apertando qualquer tecla', 'Apertando o botão de ligar', 'Batendo na tela', 'Falando com ele'],
+      correctAnswer: 'Apertando o botão de ligar',
       subject: 'Informática Básica'
     },
     {
       id: 2,
-      question: 'Qual a função do sistema operacional?',
-      options: [
-        'Apenas executar programas',
-        'Gerenciar recursos do computador e servir de interface',
-        'Armazenar dados permanentemente',
-        'Conectar à internet'
-      ],
-      correctAnswer: 'Gerenciar recursos do computador e servir de interface',
+      question: 'O que usamos para clicar na tela do computador?',
+      options: ['Teclado', 'Mouse', 'Dedo', 'Caneta'],
+      correctAnswer: 'Mouse',
       subject: 'Informática Básica'
     },
     {
       id: 3,
-      question: 'O que é RAM?',
-      options: [
-        'Memória de armazenamento permanente',
-        'Memória de acesso aleatório temporária',
-        'Processador do computador',
-        'Placa de vídeo'
-      ],
-      correctAnswer: 'Memória de acesso aleatório temporária',
+      question: 'Onde digitamos as letras no computador?',
+      options: ['Na tela', 'No mouse', 'No teclado', 'Na impressora'],
+      correctAnswer: 'No teclado',
       subject: 'Informática Básica'
     },
     {
       id: 4,
-      question: 'Qual a diferença entre hardware e software?',
-      options: [
-        'Não há diferença',
-        'Hardware são programas, software são peças físicas',
-        'Hardware são componentes físicos, software são programas',
-        'Hardware é mais importante que software'
-      ],
-      correctAnswer: 'Hardware são componentes físicos, software são programas',
+      question: 'Como abrimos um programa no computador?',
+      options: ['Clicando duas vezes em cima dele', 'Gritando o nome dele', 'Balançando o mouse', 'Desligando o computador'],
+      correctAnswer: 'Clicando duas vezes em cima dele',
       subject: 'Informática Básica'
     },
     {
       id: 5,
-      question: 'O que é um navegador web?',
-      options: [
-        'Um programa para navegar em arquivos locais',
-        'Um programa para acessar e visualizar páginas da internet',
-        'Um tipo de sistema operacional',
-        'Um componente de hardware'
-      ],
-      correctAnswer: 'Um programa para acessar e visualizar páginas da internet',
+      question: 'O que é a Internet?',
+      options: ['Um lugar para comprar comida', 'Uma rede que conecta computadores', 'Um tipo de televisão', 'Um remédio'],
+      correctAnswer: 'Uma rede que conecta computadores',
       subject: 'Informática Básica'
     },
     {
       id: 6,
-      question: 'Qual a função do antivírus?',
-      options: [
-        'Acelerar o computador',
-        'Proteger contra programas maliciosos',
-        'Organizar arquivos',
-        'Conectar à internet'
-      ],
-      correctAnswer: 'Proteger contra programas maliciosos',
+      question: 'Qual programa usamos para navegar na Internet?',
+      options: ['Word', 'Calculadora', 'Google Chrome', 'Paint'],
+      correctAnswer: 'Google Chrome',
       subject: 'Informática Básica'
     },
     {
       id: 7,
-      question: 'O que significa URL?',
-      options: [
-        'Universal Resource Locator',
-        'Uniform Resource Locator',
-        'United Resource Link',
-        'Universal Reference Link'
-      ],
-      correctAnswer: 'Uniform Resource Locator',
+      question: 'Como fazemos para pesquisar algo no Google?',
+      options: ['Digitamos o que queremos e apertamos Enter', 'Falamos com o computador', 'Desenhamos na tela', 'Cantamos uma música'],
+      correctAnswer: 'Digitamos o que queremos e apertamos Enter',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 8,
+      question: 'O que devemos fazer antes de desligar o computador?',
+      options: ['Fechar todos os programas', 'Quebrar o mouse', 'Tirar uma foto', 'Gritar bem alto'],
+      correctAnswer: 'Fechar todos os programas',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 9,
+      question: 'Onde ficam guardados os nossos arquivos no computador?',
+      options: ['Na geladeira', 'No disco rígido', 'No mouse', 'Na impressora'],
+      correctAnswer: 'No disco rígido',
+      subject: 'Informática Básica'
+    },
+    {
+      id: 10,
+      question: 'O que é WhatsApp?',
+      options: ['Um remédio', 'Um programa para mandar mensagens', 'Uma comida', 'Um animal'],
+      correctAnswer: 'Um programa para mandar mensagens',
       subject: 'Informática Básica'
     }
   ]
@@ -330,10 +214,6 @@ const questionsBySubject = {
 const subjectDisplayNames = {
   'portugues': 'Português',
   'matematica': 'Matemática', 
-  'historia': 'História',
-  'geografia': 'Geografia',
-  'quimica': 'Química',
-  'fisica': 'Física',
   'informatica': 'Informática Básica'
 };
 

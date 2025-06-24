@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ChevronDown, ChevronRight, BookOpen, Video, FileQuestion, Monitor } from 'lucide-react';
@@ -17,9 +16,9 @@ const subjectsData = [
     slug: "portugues",
     icon: <BookOpen size={18} />,
     sections: {
-      aulas: ["Interpretação de Texto", "Gramática", "Redação"],
-      quiz: ["Gramática", "Interpretação de Texto", "Redação"],
-      videos: ["Interpretação de Texto", "Dicas de Redação", "Regras de Acentuação"]
+      aulas: ["Leitura Básica", "Palavras Simples", "Frases do Dia a Dia"],
+      quiz: ["Letras e Sons", "Palavras Básicas", "Frases Simples"],
+      videos: ["Aprendendo a Ler", "Palavras do Cotidiano", "Conversação Básica"]
     }
   },
   {
@@ -27,49 +26,9 @@ const subjectsData = [
     slug: "matematica",
     icon: <BookOpen size={18} />,
     sections: {
-      aulas: ["Aritmética", "Álgebra", "Geometria", "Funções"],
-      quiz: ["Operações Básicas", "Álgebra", "Geometria"],
-      videos: ["Equações do 1º Grau", "Geometria Espacial", "Trigonometria"]
-    }
-  },
-  {
-    name: "História",
-    slug: "historia",
-    icon: <BookOpen size={18} />,
-    sections: {
-      aulas: ["Brasil Colônia e Império", "Revoluções e Guerras", "Ditadura Militar"],
-      quiz: ["História do Brasil", "História Geral", "Atualidades"],
-      videos: ["Formação do Brasil", "Guerras Mundiais", "História Política"]
-    }
-  },
-  {
-    name: "Geografia",
-    slug: "geografia",
-    icon: <BookOpen size={18} />,
-    sections: {
-      aulas: ["Geografia Física", "Geopolítica", "Demografia"],
-      quiz: ["Geografia Física", "Geopolítica", "Meio Ambiente"],
-      videos: ["Climas do Brasil", "Globalização", "Urbanização"]
-    }
-  },
-  {
-    name: "Química",
-    slug: "quimica",
-    icon: <BookOpen size={18} />,
-    sections: {
-      aulas: ["Tabela Periódica", "Reações e Equações", "Química Orgânica"],
-      quiz: ["Ligações Químicas", "Reações Químicas", "Química Orgânica"],
-      videos: ["Tabela Periódica", "Reações Inorgânicas", "Hidrocarbonetos"]
-    }
-  },
-  {
-    name: "Física",
-    slug: "fisica",
-    icon: <BookOpen size={18} />,
-    sections: {
-      aulas: ["Cinemática e Dinâmica", "Leis de Newton", "Óptica"],
-      quiz: ["Movimento e Força", "Leis de Newton", "Óptica"],
-      videos: ["Leis de Newton", "Experimentos", "Energia e Trabalho"]
+      aulas: ["Números Básicos", "Soma e Subtração", "Uso do Dinheiro"],
+      quiz: ["Contar até 100", "Operações Simples", "Dinheiro no Dia a Dia"],
+      videos: ["Aprendendo a Contar", "Calculadora Básica", "Compras no Mercado"]
     }
   },
   {
@@ -77,9 +36,9 @@ const subjectsData = [
     slug: "informatica",
     icon: <Monitor size={18} />,
     sections: {
-      aulas: ["Conceitos Básicos", "Sistema Operacional", "Internet e Navegadores"],
-      quiz: ["Hardware e Software", "Sistema Operacional", "Internet Básica"],
-      videos: ["Introdução à Informática", "Navegação Segura", "Programas Básicos"]
+      aulas: ["Ligando o Computador", "Usando o Mouse", "Navegando na Internet"],
+      quiz: ["Partes do Computador", "Primeiros Passos", "Internet Segura"],
+      videos: ["Conhecendo o Computador", "WhatsApp e E-mail", "Pesquisas no Google"]
     }
   }
 ];
