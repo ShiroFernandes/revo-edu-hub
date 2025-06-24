@@ -76,7 +76,7 @@ const Header = () => {
                 } : {}}
               >
                 <img 
-                  src="/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png" 
+                  src="/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png" 
                   alt="REVO Logo" 
                   className="h-10 w-auto mr-2"
                 />

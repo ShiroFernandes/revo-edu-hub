@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -7,13 +6,13 @@ import Layout from '@/components/Layout';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// All video data categorized by subject
+// All video data categorized by subject with new REVO logo
 const allVideos = {
   portugues: [
     {
       id: 1,
       title: 'Introdução à Língua Portuguesa',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Aprenda os fundamentos básicos da Língua Portuguesa nesta aula introdutória.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '12:34',
@@ -22,7 +21,7 @@ const allVideos = {
     {
       id: 2,
       title: 'Uso correto da vírgula',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Descubra as regras para o uso correto da vírgula na língua portuguesa.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '8:21',
@@ -31,7 +30,7 @@ const allVideos = {
     {
       id: 3,
       title: 'Concordância verbal',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Aprenda como fazer a concordância verbal corretamente em português.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '15:47',
@@ -40,7 +39,7 @@ const allVideos = {
     {
       id: 4,
       title: 'Interpretação de texto',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Técnicas e estratégias para melhorar sua capacidade de interpretação de texto.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '20:15',
@@ -51,7 +50,7 @@ const allVideos = {
     {
       id: 5,
       title: 'Operações Básicas de Matemática',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Aprenda a realizar operações básicas de adição, subtração, multiplicação e divisão.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '14:22',
@@ -60,7 +59,7 @@ const allVideos = {
     {
       id: 6,
       title: 'Equações do 1º Grau',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Como resolver equações do primeiro grau passo a passo.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '10:45',
@@ -69,7 +68,7 @@ const allVideos = {
     {
       id: 7,
       title: 'Funções Lineares',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Entenda o conceito de funções lineares e como representá-las graficamente.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '18:30',
@@ -78,7 +77,7 @@ const allVideos = {
     {
       id: 8,
       title: 'Geometria Básica',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Formas geométricas, perímetros e áreas explicados de forma simples.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '16:05',
@@ -89,7 +88,7 @@ const allVideos = {
     {
       id: 9,
       title: 'Brasil Colônia',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'A história do Brasil durante o período colonial português.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '18:30',
@@ -98,7 +97,7 @@ const allVideos = {
     {
       id: 10,
       title: 'Independência do Brasil',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Os eventos que levaram à independência do Brasil em 1822.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '15:40',
@@ -107,7 +106,7 @@ const allVideos = {
     {
       id: 11,
       title: 'Segunda Guerra Mundial',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'As causas, desenvolvimento e consequências da Segunda Guerra Mundial.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '22:15',
@@ -116,7 +115,7 @@ const allVideos = {
     {
       id: 12,
       title: 'Revolução Industrial',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Como a Revolução Industrial transformou a sociedade mundial.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '19:45',
@@ -127,7 +126,7 @@ const allVideos = {
     {
       id: 13,
       title: 'Clima e Vegetação do Brasil',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Entenda os diferentes climas e biomas presentes no território brasileiro.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '16:05',
@@ -136,7 +135,7 @@ const allVideos = {
     {
       id: 14,
       title: 'Relevo Brasileiro',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Características do relevo brasileiro: planaltos, planícies e depressões.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '14:20',
@@ -145,7 +144,7 @@ const allVideos = {
     {
       id: 15,
       title: 'Hidrografia do Brasil',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'As principais bacias hidrográficas brasileiras e sua importância.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '17:30',
@@ -154,7 +153,7 @@ const allVideos = {
     {
       id: 16,
       title: 'Urbanização Mundial',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'O processo de urbanização e seus impactos no mundo moderno.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '20:10',
@@ -165,7 +164,7 @@ const allVideos = {
     {
       id: 17,
       title: 'Tabela Periódica',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Aprenda sobre a organização e características dos elementos na tabela periódica.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '15:40',
@@ -174,7 +173,7 @@ const allVideos = {
     {
       id: 18,
       title: 'Ligações Químicas',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Entenda os tipos de ligações químicas: iônicas, covalentes e metálicas.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '18:25',
@@ -183,7 +182,7 @@ const allVideos = {
     {
       id: 19,
       title: 'Reações Químicas',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Como identificar e balancear reações químicas básicas.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '16:50',
@@ -192,7 +191,7 @@ const allVideos = {
     {
       id: 20,
       title: 'Estados da Matéria',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Sólido, líquido, gasoso: propriedades e mudanças de estado.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '13:15',
@@ -203,7 +202,7 @@ const allVideos = {
     {
       id: 21,
       title: 'Leis de Newton',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Entenda as três leis do movimento formuladas por Isaac Newton.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '17:20',
@@ -212,7 +211,7 @@ const allVideos = {
     {
       id: 22,
       title: 'Cinemática',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Movimento uniforme, aceleração e movimento retilíneo.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '19:30',
@@ -221,7 +220,7 @@ const allVideos = {
     {
       id: 23,
       title: 'Energia e Trabalho',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Conceitos fundamentais de energia cinética, potencial e trabalho.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '21:45',
@@ -230,7 +229,7 @@ const allVideos = {
     {
       id: 24,
       title: 'Óptica Básica',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Luz, reflexão, refração e formação de imagens.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '14:55',
@@ -412,7 +411,7 @@ const Aulas = () => {
         {/* Header with logo and title */}
         <div className="flex items-center justify-center mb-8">
           <motion.img 
-            src="/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png" 
+            src="/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png" 
             alt="REVO Logo" 
             className="h-16 w-auto mr-4 cursor-pointer"
             whileHover={{ scale: 1.1, rotate: 5 }}
@@ -557,7 +556,7 @@ const Aulas = () => {
         {/* Floating REVO logos */}
         <div className="fixed top-1/4 left-4 opacity-20 pointer-events-none">
           <motion.img 
-            src="/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png" 
+            src="/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png" 
             alt="REVO" 
             className="w-12 h-12"
             animate={{ 
@@ -575,7 +574,7 @@ const Aulas = () => {
 
         <div className="fixed bottom-1/4 right-8 opacity-20 pointer-events-none">
           <motion.img 
-            src="/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png" 
+            src="/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png" 
             alt="REVO" 
             className="w-16 h-16"
             animate={{ 
@@ -620,7 +619,7 @@ const Aulas = () => {
             >
               <h2 className="text-2xl font-bold flex items-center">
                 <img 
-                  src="/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png" 
+                  src="/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png" 
                   alt="REVO" 
                   className="w-8 h-8 mr-2"
                 />

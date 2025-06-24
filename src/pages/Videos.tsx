@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Layout from '@/components/Layout';
@@ -7,13 +6,13 @@ import { Play, Star, Heart, Zap } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-// Videos data by subject with REVO logo as thumbnail
+// Videos data by subject with new REVO logo as thumbnail
 const videosBySubject = {
   portugues: [
     {
       id: 1,
       title: 'Interpretação de Texto - Técnicas Avançadas',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Aprenda técnicas avançadas para interpretar diferentes gêneros textuais no ENEM.',
       videoUrl: 'https://www.youtube.com/embed/K12i3cqe_fA',
       duration: '15:20',
@@ -23,7 +22,7 @@ const videosBySubject = {
     {
       id: 2,
       title: 'Redação ENEM - Como tirar 1000',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Estratégias e técnicas para conseguir nota máxima na redação do ENEM.',
       videoUrl: 'https://www.youtube.com/embed/dw8yPVAkzz4',
       duration: '18:45',
@@ -32,7 +31,7 @@ const videosBySubject = {
     {
       id: 3,
       title: 'Figuras de Linguagem Explicadas',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Metáforas, metonímias e outras figuras de linguagem com exemplos práticos.',
       videoUrl: 'https://www.youtube.com/embed/mvF7LMf4BZ8',
       duration: '12:30',
@@ -41,7 +40,7 @@ const videosBySubject = {
     {
       id: 4,
       title: 'Análise Sintática Completa',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Como analisar a estrutura sintática das frases passo a passo.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '14:15',
@@ -52,7 +51,7 @@ const videosBySubject = {
     {
       id: 5,
       title: 'Equações do 1º Grau - Resolução Completa',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Passo a passo para resolver equações do primeiro grau com exemplos práticos.',
       videoUrl: 'https://www.youtube.com/embed/L2zWP1HaJiI',
       duration: '12:30',
@@ -62,7 +61,7 @@ const videosBySubject = {
     {
       id: 6,
       title: 'Geometria Plana - Cálculo de Áreas',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Calcule áreas de figuras geométricas planas com fórmulas e exercícios.',
       videoUrl: 'https://www.youtube.com/embed/9IX1WOgVYQQ',
       duration: '16:45',
@@ -71,7 +70,7 @@ const videosBySubject = {
     {
       id: 7,
       title: 'Funções do 1º Grau e Gráficos',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Entenda o conceito e como construir gráficos de funções lineares.',
       videoUrl: 'https://www.youtube.com/embed/q2Hkp8y_GGQ',
       duration: '18:20',
@@ -80,7 +79,7 @@ const videosBySubject = {
     {
       id: 8,
       title: 'Teorema de Pitágoras na Prática',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Aplicações práticas do teorema de Pitágoras em problemas do dia a dia.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '13:55',
@@ -91,7 +90,7 @@ const videosBySubject = {
     {
       id: 9,
       title: 'Brasil Império - Período Regencial',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Os principais eventos do período imperial brasileiro e suas transformações.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '22:15',
@@ -101,7 +100,7 @@ const videosBySubject = {
     {
       id: 10,
       title: 'Revolução Francesa - Causas e Consequências',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'As causas e consequências da Revolução Francesa de 1789 para o mundo.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '19:30',
@@ -110,7 +109,7 @@ const videosBySubject = {
     {
       id: 11,
       title: 'Era Vargas - Estado Novo',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'O período de Getúlio Vargas e suas transformações no Brasil moderno.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '20:45',
@@ -119,7 +118,7 @@ const videosBySubject = {
     {
       id: 12,
       title: 'Segunda Guerra Mundial',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'O maior conflito da história e suas consequências para o mundo.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '17:25',
@@ -130,7 +129,7 @@ const videosBySubject = {
     {
       id: 13,
       title: 'Biomas Brasileiros - Características',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Conheça os principais biomas do Brasil e suas características únicas.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '16:30',
@@ -140,7 +139,7 @@ const videosBySubject = {
     {
       id: 14,
       title: 'Placas Tectônicas e Terremotos',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Como as placas tectônicas moldam a superfície terrestre e causam terremotos.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '18:15',
@@ -149,7 +148,7 @@ const videosBySubject = {
     {
       id: 15,
       title: 'Globalização e Economia Mundial',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Os impactos da globalização na economia e sociedade contemporânea.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '21:40',
@@ -158,7 +157,7 @@ const videosBySubject = {
     {
       id: 16,
       title: 'Ciclo da Água e Clima',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'O processo de circulação da água na natureza e influência no clima.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '14:20',
@@ -169,7 +168,7 @@ const videosBySubject = {
     {
       id: 17,
       title: 'Tabela Periódica - Propriedades',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Como ler e interpretar a tabela periódica e propriedades dos elementos.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '19:45',
@@ -179,7 +178,7 @@ const videosBySubject = {
     {
       id: 18,
       title: 'Ligações Químicas - Tipos e Propriedades',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Iônicas, covalentes e metálicas: tipos de ligações químicas explicadas.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '17:30',
@@ -188,7 +187,7 @@ const videosBySubject = {
     {
       id: 19,
       title: 'Reações Químicas - Balanceamento',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Como identificar, classificar e balancear diferentes tipos de reações.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '15:50',
@@ -197,7 +196,7 @@ const videosBySubject = {
     {
       id: 20,
       title: 'Ácidos e Bases - pH e Indicadores',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Entenda a escala de pH e como medir acidez e basicidade de substâncias.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '13:25',
@@ -208,7 +207,7 @@ const videosBySubject = {
     {
       id: 21,
       title: 'Leis de Newton - Aplicações Práticas',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'As três leis de Newton explicadas com exemplos do cotidiano e exercícios.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '14:15',
@@ -218,7 +217,7 @@ const videosBySubject = {
     {
       id: 22,
       title: 'Cinemática - Movimento e Velocidade',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Conceitos básicos de cinemática: movimento uniforme e uniformemente variado.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '16:40',
@@ -227,7 +226,7 @@ const videosBySubject = {
     {
       id: 23,
       title: 'Energia Mecânica - Conservação',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Energia cinética, potencial e o princípio da conservação de energia.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '18:35',
@@ -236,7 +235,7 @@ const videosBySubject = {
     {
       id: 24,
       title: 'Ondas e Fenômenos Sonoros',
-      thumbnail: '/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png',
+      thumbnail: '/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png',
       description: 'Propriedades das ondas sonoras e fenômenos acústicos do dia a dia.',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       duration: '20:10',
@@ -325,7 +324,7 @@ const Videos = () => {
             transition={{ delay: 0.3, type: "spring", stiffness: 260, damping: 20 }}
           >
             <img 
-              src="/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png" 
+              src="/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png" 
               alt="REVO Logo" 
               className="h-16 w-auto opacity-80"
             />

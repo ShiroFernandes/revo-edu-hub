@@ -145,7 +145,7 @@ const Home = () => {
               onClick={handleSecretClick}
             >
               <img 
-                src="/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png" 
+                src="/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png" 
                 alt="REVO Logo" 
                 className="h-20 w-auto cursor-pointer easter-egg-trigger"
               />
@@ -327,7 +327,7 @@ const Home = () => {
             transition={{ delay: 1.2 }}
           >
             <img 
-              src="/lovable-uploads/838d6cdb-ffae-458d-bcf6-7ff359d5a495.png" 
+              src="/lovable-uploads/c744f552-22a7-4164-876b-debf1ddc29dd.png" 
               alt="REVO Logo" 
               className="h-8 w-auto opacity-70"
             />
