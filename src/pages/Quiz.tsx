@@ -1,215 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, X } from 'lucide-react';
+import { Check, X, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import { useSearchParams } from 'react-router-dom';
-
-// Quiz questions by subject - Questões muito básicas para iniciantes
-const questionsBySubject = {
-  portugues: [
-    {
-      id: 1,
-      question: 'Quantas letras tem o alfabeto?',
-      options: ['24 letras', '26 letras', '28 letras', '30 letras'],
-      correctAnswer: '26 letras',
-      subject: 'Português'
-    },
-    {
-      id: 2,
-      question: 'Qual é a primeira letra do alfabeto?',
-      options: ['B', 'A', 'C', 'D'],
-      correctAnswer: 'A',
-      subject: 'Português'
-    },
-    {
-      id: 3,
-      question: 'Como se escreve o número "dois" em palavras?',
-      options: ['dous', 'dose', 'dois', 'dols'],
-      correctAnswer: 'dois',
-      subject: 'Português'
-    },
-    {
-      id: 4,
-      question: 'Qual palavra significa "bom dia"?',
-      options: ['Boa tarde', 'Boa noite', 'Bom dia', 'Até logo'],
-      correctAnswer: 'Bom dia',
-      subject: 'Português'
-    },
-    {
-      id: 5,
-      question: 'Quantas vogais existem?',
-      options: ['4', '5', '6', '7'],
-      correctAnswer: '5',
-      subject: 'Português'
-    },
-    {
-      id: 6,
-      question: 'Qual é o oposto de "grande"?',
-      options: ['Alto', 'Pequeno', 'Largo', 'Comprido'],
-      correctAnswer: 'Pequeno',
-      subject: 'Português'
-    },
-    {
-      id: 7,
-      question: 'Como se chama o lugar onde compramos remédios?',
-      options: ['Padaria', 'Farmácia', 'Mercado', 'Açougue'],
-      correctAnswer: 'Farmácia',
-      subject: 'Português'
-    },
-    {
-      id: 8,
-      question: 'Qual destas palavras está escrita corretamente?',
-      options: ['Casa', 'Kasa', 'Caza', 'Kaza'],
-      correctAnswer: 'Casa',
-      subject: 'Português'
-    }
-  ],
-  matematica: [
-    {
-      id: 1,
-      question: 'Quanto é 1 + 1?',
-      options: ['1', '2', '3', '4'],
-      correctAnswer: '2',
-      subject: 'Matemática'
-    },
-    {
-      id: 2,
-      question: 'Quanto é 5 - 2?',
-      options: ['2', '3', '4', '7'],
-      correctAnswer: '3',
-      subject: 'Matemática'
-    },
-    {
-      id: 3,
-      question: 'Quantos dedos temos em uma mão?',
-      options: ['4', '5', '6', '10'],
-      correctAnswer: '5',
-      subject: 'Matemática'
-    },
-    {
-      id: 4,
-      question: 'Se você tem 2 reais e ganha mais 3 reais, quanto você tem?',
-      options: ['4 reais', '5 reais', '6 reais', '1 real'],
-      correctAnswer: '5 reais',
-      subject: 'Matemática'
-    },
-    {
-      id: 5,
-      question: 'Quantas horas tem um dia?',
-      options: ['12 horas', '20 horas', '24 horas', '30 horas'],
-      correctAnswer: '24 horas',
-      subject: 'Matemática'
-    },
-    {
-      id: 6,
-      question: 'Quanto é 10 - 5?',
-      options: ['3', '4', '5', '15'],
-      correctAnswer: '5',
-      subject: 'Matemática'
-    },
-    {
-      id: 7,
-      question: 'Quantos lados tem um triângulo?',
-      options: ['2', '3', '4', '5'],
-      correctAnswer: '3',
-      subject: 'Matemática'
-    },
-    {
-      id: 8,
-      question: 'Se você comprar um pão por R$ 1,00 e pagar com R$ 2,00, quanto receberá de troco?',
-      options: ['R$ 1,00', 'R$ 2,00', 'R$ 3,00', 'Nada'],
-      correctAnswer: 'R$ 1,00',
-      subject: 'Matemática'
-    },
-    {
-      id: 9,
-      question: 'Quanto é 2 + 2?',
-      options: ['3', '4', '5', '22'],
-      correctAnswer: '4',
-      subject: 'Matemática'
-    },
-    {
-      id: 10,
-      question: 'Quantos minutos tem uma hora?',
-      options: ['50 minutos', '60 minutos', '70 minutos', '100 minutos'],
-      correctAnswer: '60 minutos',
-      subject: 'Matemática'
-    }
-  ],
-  informatica: [
-    {
-      id: 1,
-      question: 'Como ligamos o computador?',
-      options: ['Apertando qualquer tecla', 'Apertando o botão de ligar', 'Batendo na tela', 'Falando com ele'],
-      correctAnswer: 'Apertando o botão de ligar',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 2,
-      question: 'O que usamos para clicar na tela do computador?',
-      options: ['Teclado', 'Mouse', 'Dedo', 'Caneta'],
-      correctAnswer: 'Mouse',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 3,
-      question: 'Onde digitamos as letras no computador?',
-      options: ['Na tela', 'No mouse', 'No teclado', 'Na impressora'],
-      correctAnswer: 'No teclado',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 4,
-      question: 'Como abrimos um programa no computador?',
-      options: ['Clicando duas vezes em cima dele', 'Gritando o nome dele', 'Balançando o mouse', 'Desligando o computador'],
-      correctAnswer: 'Clicando duas vezes em cima dele',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 5,
-      question: 'O que é a Internet?',
-      options: ['Um lugar para comprar comida', 'Uma rede que conecta computadores', 'Um tipo de televisão', 'Um remédio'],
-      correctAnswer: 'Uma rede que conecta computadores',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 6,
-      question: 'Qual programa usamos para navegar na Internet?',
-      options: ['Word', 'Calculadora', 'Google Chrome', 'Paint'],
-      correctAnswer: 'Google Chrome',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 7,
-      question: 'Como fazemos para pesquisar algo no Google?',
-      options: ['Digitamos o que queremos e apertamos Enter', 'Falamos com o computador', 'Desenhamos na tela', 'Cantamos uma música'],
-      correctAnswer: 'Digitamos o que queremos e apertamos Enter',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 8,
-      question: 'O que devemos fazer antes de desligar o computador?',
-      options: ['Fechar todos os programas', 'Quebrar o mouse', 'Tirar uma foto', 'Gritar bem alto'],
-      correctAnswer: 'Fechar todos os programas',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 9,
-      question: 'Onde ficam guardados os nossos arquivos no computador?',
-      options: ['Na geladeira', 'No disco rígido', 'No mouse', 'Na impressora'],
-      correctAnswer: 'No disco rígido',
-      subject: 'Informática Básica'
-    },
-    {
-      id: 10,
-      question: 'O que é WhatsApp?',
-      options: ['Um remédio', 'Um programa para mandar mensagens', 'Uma comida', 'Um animal'],
-      correctAnswer: 'Um programa para mandar mensagens',
-      subject: 'Informática Básica'
-    }
-  ]
-};
+import { getQuestionsForToday, getRandomMotivationalMessage } from '@/utils/questionBank';
 
 const subjectDisplayNames = {
   'portugues': 'Português',
@@ -224,17 +20,19 @@ const Quiz = () => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
-  const [questions, setQuestions] = useState<typeof questionsBySubject.portugues>([]);
+  const [questions, setQuestions] = useState<any[]>([]);
   const [currentSubject, setCurrentSubject] = useState('portugues');
+  const [motivationalMessage, setMotivationalMessage] = useState('');
   
   useEffect(() => {
     const subjectParam = searchParams.get('subject') || 'portugues';
-    const validSubject = questionsBySubject[subjectParam as keyof typeof questionsBySubject] 
+    const validSubject = ['portugues', 'matematica', 'informatica'].includes(subjectParam) 
       ? subjectParam 
       : 'portugues';
       
     setCurrentSubject(validSubject);
-    setQuestions(questionsBySubject[validSubject as keyof typeof questionsBySubject]);
+    const todayQuestions = getQuestionsForToday(validSubject);
+    setQuestions(todayQuestions);
     
     // Reset quiz state when subject changes
     setCurrentQuestion(0);
@@ -242,6 +40,7 @@ const Quiz = () => {
     setIsAnswered(false);
     setScore(0);
     setQuizFinished(false);
+    setMotivationalMessage('');
   }, [searchParams]);
   
   const handleAnswerSelect = (answer: string) => {
@@ -262,6 +61,7 @@ const Quiz = () => {
       setIsAnswered(false);
     } else {
       setQuizFinished(true);
+      setMotivationalMessage(getRandomMotivationalMessage());
     }
   };
 
@@ -271,6 +71,7 @@ const Quiz = () => {
     setIsAnswered(false);
     setScore(0);
     setQuizFinished(false);
+    setMotivationalMessage('');
   };
 
   const isCorrectAnswer = (answer: string) => {
@@ -369,10 +170,20 @@ const Quiz = () => {
                 transition={{ duration: 0.5 }}
                 className="bg-white rounded-xl shadow-lg p-8 text-center"
               >
+                <div className="flex justify-center mb-4">
+                  <Heart className="h-12 w-12 text-red-500 fill-current" />
+                </div>
+                
                 <h2 className="text-3xl font-bold mb-6">Quiz Finalizado!</h2>
                 
                 <div className="text-6xl font-bold mb-6 text-blue-600">
                   {score} / {questions.length}
+                </div>
+                
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-6">
+                  <p className="text-lg text-yellow-800 font-medium">
+                    {motivationalMessage}
+                  </p>
                 </div>
                 
                 <p className="text-xl mb-8">
