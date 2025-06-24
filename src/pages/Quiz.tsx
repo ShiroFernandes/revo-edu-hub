@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import { useSearchParams } from 'react-router-dom';
-import { getQuestionsForToday, getRandomMotivationalMessage } from '@/utils/questionBank';
+import { getQuestionsForToday, getRandomMotivationalMessage, getQuestionsByTopic } from '@/utils/questionBank';
 
 const subjectDisplayNames = {
   'portugues': 'Português',
@@ -26,12 +25,22 @@ const Quiz = () => {
   
   useEffect(() => {
     const subjectParam = searchParams.get('subject') || 'portugues';
+    const topicParam = searchParams.get('topic');
+    
     const validSubject = ['portugues', 'matematica', 'informatica'].includes(subjectParam) 
       ? subjectParam 
       : 'portugues';
       
     setCurrentSubject(validSubject);
-    const todayQuestions = getQuestionsForToday(validSubject);
+    
+    // Se há um tópico específico, buscar questões por tópico
+    let todayQuestions;
+    if (topicParam) {
+      todayQuestions = getQuestionsByTopic(topicParam);
+    } else {
+      todayQuestions = getQuestionsForToday(validSubject);
+    }
+    
     setQuestions(todayQuestions);
     
     // Reset quiz state when subject changes
@@ -95,7 +104,10 @@ const Quiz = () => {
   return (
     <Layout>
       <div className="revo-container py-10">
-        <h1 className="revo-page-title">Quiz de {subjectDisplayNames[currentSubject as keyof typeof subjectDisplayNames]}</h1>
+        <h1 className="revo-page-title">
+          Quiz de {subjectDisplayNames[currentSubject as keyof typeof subjectDisplayNames]}
+          {questions[0]?.topic && ` - ${questions[0].topic}`}
+        </h1>
         
         <div className="max-w-3xl mx-auto">
           <AnimatePresence mode="wait">

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ChevronDown, ChevronRight, BookOpen, Video, FileQuestion, Monitor } from 'lucide-react';
@@ -17,8 +18,19 @@ const subjectsData = [
     icon: <BookOpen size={18} />,
     sections: {
       aulas: ["Leitura Básica", "Palavras Simples", "Frases do Dia a Dia"],
-      quiz: ["Letras e Sons", "Palavras Básicas", "Frases Simples"],
-      videos: ["Aprendendo a Ler", "Palavras do Cotidiano", "Conversação Básica"]
+      quiz: [
+        { name: "Letras e Sons", slug: "Letras e Sons" },
+        { name: "Palavras Básicas", slug: "Palavras Básicas" },
+        { name: "Frases Simples", slug: "Frases Simples" },
+        { name: "Aprendendo a Ler", slug: "Aprendendo a Ler" },
+        { name: "Palavras do Cotidiano", slug: "Palavras do Cotidiano" },
+        { name: "Conversação Básica", slug: "Conversação Básica" }
+      ],
+      videos: [
+        { name: "Aprendendo a Ler", slug: "Aprendendo a Ler" },
+        { name: "Palavras do Cotidiano", slug: "Palavras do Cotidiano" },
+        { name: "Conversação Básica", slug: "Conversação Básica" }
+      ]
     }
   },
   {
@@ -27,8 +39,19 @@ const subjectsData = [
     icon: <BookOpen size={18} />,
     sections: {
       aulas: ["Números Básicos", "Soma e Subtração", "Uso do Dinheiro"],
-      quiz: ["Contar até 100", "Operações Simples", "Dinheiro no Dia a Dia"],
-      videos: ["Aprendendo a Contar", "Calculadora Básica", "Compras no Mercado"]
+      quiz: [
+        { name: "Contar até 100", slug: "Contar até 100" },
+        { name: "Operações Simples", slug: "Operações Simples" },
+        { name: "Dinheiro no Dia a Dia", slug: "Dinheiro no Dia a Dia" },
+        { name: "Aprendendo a Contar", slug: "Aprendendo a Contar" },
+        { name: "Calculadora Básica", slug: "Calculadora Básica" },
+        { name: "Compras no Mercado", slug: "Compras no Mercado" }
+      ],
+      videos: [
+        { name: "Aprendendo a Contar", slug: "Aprendendo a Contar" },
+        { name: "Calculadora Básica", slug: "Calculadora Básica" },
+        { name: "Compras no Mercado", slug: "Compras no Mercado" }
+      ]
     }
   },
   {
@@ -37,7 +60,12 @@ const subjectsData = [
     icon: <Monitor size={18} />,
     sections: {
       aulas: ["Ligando o Computador", "Usando o Mouse", "Navegando na Internet"],
-      quiz: ["Partes do Computador", "Primeiros Passos", "Internet Segura"],
+      quiz: [
+        { name: "Ligando o Computador", slug: "Ligando o Computador" },
+        { name: "Usando o Mouse", slug: "Usando o Mouse" },
+        { name: "Navegando na Internet", slug: "Navegando na Internet" },
+        { name: "Partes do Computador", slug: "Partes do Computador" }
+      ],
       videos: ["Conhecendo o Computador", "WhatsApp e E-mail", "Pesquisas no Google"]
     }
   }
@@ -81,6 +109,11 @@ const Sidebar = () => {
   // Navigate to content page with subject parameter
   const navigateToSection = (section: string, subjectSlug: string) => {
     navigate(`/${section}?subject=${subjectSlug}`);
+  };
+
+  // Navigate to specific topic
+  const navigateToTopic = (section: string, subjectSlug: string, topicSlug: string) => {
+    navigate(`/${section}?subject=${subjectSlug}&topic=${topicSlug}`);
   };
 
   return (
@@ -142,11 +175,19 @@ const Sidebar = () => {
                           Ver todos os {section}
                         </button>
                         {topics.map((topic) => (
-                          <div
-                            key={topic}
-                            className="w-full text-left p-2 text-sm rounded text-gray-600"
-                          >
-                            • {topic}
+                          <div key={typeof topic === 'string' ? topic : topic.name}>
+                            {typeof topic === 'string' ? (
+                              <div className="w-full text-left p-2 text-sm rounded text-gray-600">
+                                • {topic}
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => navigateToTopic(section, subject.slug, topic.slug)}
+                                className="w-full text-left p-2 text-sm rounded hover:bg-blue-100 hover:text-blue-700 transition-colors text-gray-600"
+                              >
+                                • {topic.name}
+                              </button>
+                            )}
                           </div>
                         ))}
                       </div>
